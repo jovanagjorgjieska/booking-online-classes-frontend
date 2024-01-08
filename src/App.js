@@ -3,6 +3,7 @@ import Home from './Home';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import CourseDetails from './CourseDetails';
 import TeacherDetails from './TeacherDetails';
+import Register from './Register';
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
         <Navbar></Navbar>
         <div className="content">
           <Switch>
+            <Route path="/register">
+              <Register/>
+            </Route>
             <Route exact path="/">
               <Home/>
             </Route>
