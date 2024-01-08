@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 const Register = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [role, setRole] = useState('STUDENT');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -46,7 +47,7 @@ const Register = () => {
 
         setValidationErrors({});
 
-        const userToRegister = { email, password, firstName, lastName, role };
+        const userToRegister = { email, password, firstName, lastName, role, phoneNumber };
 
         setIsPending(true);
 
@@ -84,6 +85,13 @@ const Register = () => {
                     required
                     value={lastName}
                     onChange = {(e) => setLastName(e.target.value)}
+                />
+                <label>Phone number:</label>
+                <input
+                    type="text"
+                    required
+                    value={phoneNumber}
+                    onChange = {(e) => setPhoneNumber(e.target.value)}
                 />
                 <label>I want to register as:</label>
                 <select

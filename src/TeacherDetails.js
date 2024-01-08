@@ -13,6 +13,8 @@ const TeacherDetails = () => {
                 <article>
                     <h2>{teacher.firstName} {teacher.lastName}</h2>
                     <br></br>
+                    <p>Email: {teacher.email}</p>
+                    <p>Phone Number: {teacher.phoneNumber}</p>
                     <p>Education: {teacher.education}</p>
                     <p>Occupation: {teacher.occupation}</p>
                 </article>
