@@ -22,7 +22,7 @@ const Register = () => {
         return passwordRegex.test(password);
     };
 
-    const handleSubmit = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
 
         const errors = {};
@@ -58,7 +58,7 @@ const Register = () => {
             .then(() => {
                 console.log("New user added");
                 setIsPending(false);
-                history.push('/');
+                history.push('/login');
             })
             .catch(error => {
                 console.error("Error registering user:", error);
@@ -70,7 +70,7 @@ const Register = () => {
     return (  
         <div className="register">
             <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleRegister}>
                 <label>First name:</label>
                 <input
                     type="text"

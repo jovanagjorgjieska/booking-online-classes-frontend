@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import CourseDetails from './CourseDetails';
 import TeacherDetails from './TeacherDetails';
 import Register from './Register';
+import Login from './Login';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
           <Switch>
             <Route path="/register">
               <Register/>
+            </Route>
+            <Route path="/login">
+              <Login/>
             </Route>
             <Route exact path="/">
               <Home/>

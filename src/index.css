@@ -83,21 +83,21 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register {
+.register, .login {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
-.register label {
+.register label, .login label {
   text-align: left;
   display: block;
 }
-.register h2 {
+.register h2, .login h2 {
   font-size: 20px;
   color: #f1356d;
   margin-bottom: 30px;
 }
-.register input, .register textarea, .register select {
+.register input, .register textarea, .register select, .login input {
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
@@ -105,7 +105,7 @@
   box-sizing: border-box;
   display: block;
 }
-.register button {
+.register button, .login button {
   background: #f1356d;
   color: #fff;
   border: 0;
