@@ -5,6 +5,7 @@ import CourseDetails from './CourseDetails';
 import TeacherDetails from './TeacherDetails';
 import Register from './Register';
 import Login from './Login';
+import Welcome from './Welcome';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Navbar></Navbar>
         <div className="content">
           <Switch>
+          <Route path="/welcome">
+              <Welcome/>
+            </Route>
             <Route path="/register">
               <Register/>
             </Route>

@@ -92,9 +92,14 @@
   text-align: left;
   display: block;
 }
-.register h2, .login h2 {
+.register h2 {
   font-size: 20px;
   color: #f1356d;
+  margin-bottom: 30px;
+}
+.login h2 {
+  font-size: 20px;
+  color:darkgreen;
   margin-bottom: 30px;
 }
 .register input, .register textarea, .register select, .login input {
@@ -105,8 +110,31 @@
   box-sizing: border-box;
   display: block;
 }
-.register button, .login button {
+.register button {
   background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login button {
+  background: darkgreen;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.welcome button {
+  background: darkgreen;
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 30px;
   color: #fff;
   border: 0;
   padding: 8px;
