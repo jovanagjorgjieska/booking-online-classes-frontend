@@ -27,9 +27,10 @@ const Login = () => {
                 return response.json();
             })
             .then(data => {
-                const jwtToken = data.token;
+                const jwtToken = data.accessToken;
 
                 localStorage.setItem('jwtToken', jwtToken);
+                localStorage.setItem('user', data.email); 
 
                 setIsPending(false);
 
