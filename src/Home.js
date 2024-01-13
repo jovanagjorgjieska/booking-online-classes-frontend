@@ -6,11 +6,6 @@ const Home = () => {
     const token = localStorage.getItem('jwtToken');
     const loggedUser = localStorage.getItem('user');
 
-    console.log("TOKEN:");
-    console.log(token);
-    console.log("LOGGED USER:");
-    console.log(loggedUser);
-
     return ( 
         <div className="home">
             {error && <div>{error}</div>}

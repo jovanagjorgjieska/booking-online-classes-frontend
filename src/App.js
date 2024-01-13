@@ -6,6 +6,8 @@ import TeacherDetails from './TeacherDetails';
 import Register from './Register';
 import Login from './Login';
 import Welcome from './Welcome';
+import EditProfile from './EditProfile';
+import ViewProfile from './ViewProfile';
 
 function App() {
   return (
@@ -31,6 +33,12 @@ function App() {
             </Route>
             <Route path="/teachers/:id">
               <TeacherDetails/>
+            </Route>
+            <Route exact path="/profile">
+              <ViewProfile/>
+            </Route>
+            <Route path="/profile/edit">
+              <EditProfile/>
             </Route>
           </Switch>
         </div> 
