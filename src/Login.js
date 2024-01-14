@@ -34,7 +34,7 @@ const Login = () => {
 
                 setIsPending(false);
 
-                history.push('/');
+                history.push('/home');
             })
             .catch(error => {
                 console.error("Error authenticating:", error);

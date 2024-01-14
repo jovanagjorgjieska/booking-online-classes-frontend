@@ -26,7 +26,7 @@ const Home = () => {
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
             {courses && isTeacher && <CourseList courses={courses} title="Your Courses"/>}
-            {courses && !isTeacher && <CourseList courses={courses} title="All Courses"/>}
+            {courses && profile && !isTeacher && <CourseList courses={courses} title="All Courses"/>}
         </div>
     );
 }
