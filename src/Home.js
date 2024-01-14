@@ -6,11 +6,12 @@ const Home = () => {
     const token = localStorage.getItem('jwtToken');
     const loggedUser = localStorage.getItem('user');
     const {data: profile, fetchUserError, fetchUserIsPending} = useFetch('http://localhost:8080/api/auth/' + loggedUser);
-    const [isTeacher, setIsTeacher] = useState(false);
+    const [isTeacher, setIsTeacher] = useState(false); 
 
     useEffect(() => {
-        if (profile?.userRole === 'TEACHER') {
+        if (profile?.userRole === "TEACHER") {
             setIsTeacher(true);
+            localStorage.setItem('isTeacher', isTeacher);
         }
     }, [profile]);
 

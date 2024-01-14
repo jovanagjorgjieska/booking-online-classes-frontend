@@ -3,6 +3,8 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import useFetch from "./useFetch";
 
 const CourseDetails = () => {
+    const isTeacher = localStorage.getItem('isTeacher');
+    console.log(isTeacher);
     const {id} = useParams();
     const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id)
 
@@ -17,7 +19,7 @@ const CourseDetails = () => {
                     <br></br>
                     <p><Link to={`/teachers/${course.teacher.userId}`}>Teacher: {course.teacher.firstName} {course.teacher.lastName}</Link></p>
                     <div>{course.description}</div>
-                    <button>Book</button>
+                    {!isTeacher && <button>Book</button>}
                 </article>
             )}
         </div>
