@@ -71,7 +71,8 @@ const CourseDetails = () => {
                     <br></br>
                     <p><Link to={`/teachers/${course.teacher.userId}`}>Teacher: {course.teacher.firstName} {course.teacher.lastName}</Link></p>
                     <div>{course.description}</div>
-                    {!isPendingBook && !isBookingSuccessful && <button onClick={handleBook}>Book</button>}
+                    {!isTeacher && !isPendingBook && !isBookingSuccessful && <button onClick={handleBook}>Book</button>}
+                    {isTeacher && <Link to={`/courses/${course.courseId}/edit`}><button>Edit course</button></Link>}
                     {isPendingBook && <button disabled>Booking loading...</button>}
                     {isBookingSuccessful && <div>Booking successful!</div>}
                 </article>

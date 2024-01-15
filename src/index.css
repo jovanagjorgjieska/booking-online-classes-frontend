@@ -35,7 +35,7 @@
 }
 .course-preview {
   width: 150px;
-  height: 150px;
+  height: 200px;
   background-color:whitesmoke;
   border: 2px solid #f1356d;
   padding: 10px 16px;
@@ -83,12 +83,12 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register, .login, .edit-profile {
+.register, .login, .edit-profile, .edit-course {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
-.register label, .login label, .edit-profile label {
+.register label, .login label, .edit-profile label, .edit-course label {
   text-align: left;
   display: block;
 }
@@ -102,7 +102,7 @@
   color:darkgreen;
   margin-bottom: 30px;
 }
-.register input, .register textarea, .register select, .login input, .edit-profile input {
+.register input, .register select, .login input, .edit-profile input, .edit-course input, .edit-course select, .edit-course textarea {
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;

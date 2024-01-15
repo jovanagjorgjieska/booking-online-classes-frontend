@@ -8,6 +8,7 @@ import Login from './Login';
 import Welcome from './Welcome';
 import EditProfile from './EditProfile';
 import ViewProfile from './ViewProfile';
+import EditCourse from './EditCourse';
 
 function App() {
   return (
@@ -28,8 +29,11 @@ function App() {
             <Route path="/home">
               <Home/>
             </Route>
-            <Route path="/courses/:id">
+            <Route exact path="/courses/:id">
               <CourseDetails/>
+            </Route>
+            <Route path="/courses/:id/edit">
+              <EditCourse/>
             </Route>
             <Route path="/teachers/:id">
               <TeacherDetails/>
