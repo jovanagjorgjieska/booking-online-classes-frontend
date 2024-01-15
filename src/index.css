@@ -83,12 +83,12 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register, .login, .edit-profile, .edit-course {
+.register, .login, .edit-profile, .edit-course, .no-courses, .add-course {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
-.register label, .login label, .edit-profile label, .edit-course label {
+.register label, .login label, .edit-profile label, .edit-course label, .add-course label {
   text-align: left;
   display: block;
 }
@@ -102,7 +102,8 @@
   color:darkgreen;
   margin-bottom: 30px;
 }
-.register input, .register select, .login input, .edit-profile input, .edit-course input, .edit-course select, .edit-course textarea {
+.register input, .register select, .login input, .edit-profile input, .edit-course input, .edit-course select, .edit-course textarea,
+.add-course input, .add-course select, .add-course textarea {
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
@@ -110,13 +111,27 @@
   box-sizing: border-box;
   display: block;
 }
-.register button, .view-profile button, #deleteButton {
+.register button, .view-profile button, #deleteButton, .add-course button {
   background: #f1356d;
   color: #fff;
   border: 0;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.no-courses button, .course-list button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 50%;
+  height: 50px;
+  margin-top: 30px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .login button, #saveButton {
@@ -126,6 +141,10 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.center-button-container {
+  text-align: center;
 }
 
 #deleteButton {

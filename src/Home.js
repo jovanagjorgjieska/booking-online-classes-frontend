@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import CourseList from "./CourseList";
+import NoCourses from "./NoCourses";
 import useFetch from "./useFetch";
 
 const Home = () => {
@@ -25,8 +26,9 @@ const Home = () => {
         <div className="home">
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
-            {courses && isTeacher && <CourseList courses={courses} title="Your Courses"/>}
+            {courses && courses.length > 0 && isTeacher && <CourseList courses={courses} title="Your Courses"/>}
             {courses && profile && !isTeacher && <CourseList courses={courses} title="All Courses"/>}
+            {courses && courses.length === 0 && <NoCourses/>}
         </div>
     );
 }

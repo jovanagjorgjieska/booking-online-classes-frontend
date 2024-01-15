@@ -2,6 +2,8 @@ import {Link} from 'react-router-dom';
 
 const CourseList = ({courses, title}) => {
 
+    const isTeacher = localStorage.getItem('isTeacher');
+
     return (
         <div className="course-list">
             <h2>{title}</h2>
@@ -17,6 +19,9 @@ const CourseList = ({courses, title}) => {
                 </div>
             ))}
             </div>
+            {isTeacher && <div className="center-button-container">
+                <Link to="/addCourse"><button>Add new course</button></Link>
+            </div>}
         </div>
     );
 }

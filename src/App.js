@@ -9,6 +9,7 @@ import Welcome from './Welcome';
 import EditProfile from './EditProfile';
 import ViewProfile from './ViewProfile';
 import EditCourse from './EditCourse';
+import AddCourse from './AddCourse';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path="/courses/:id/edit">
               <EditCourse/>
+            </Route>
+            <Route path="/addCourse">
+              <AddCourse/>
             </Route>
             <Route path="/teachers/:id">
               <TeacherDetails/>
