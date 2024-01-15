@@ -110,7 +110,7 @@
   box-sizing: border-box;
   display: block;
 }
-.register button, .view-profile button, .edit-profile button {
+.register button, .view-profile button, #deleteButton {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -119,13 +119,21 @@
   cursor: pointer;
 }
 
-.login button {
+.login button, #saveButton {
   background: darkgreen;
   color: #fff;
   border: 0;
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+#deleteButton {
+  float: left;
+}
+
+#saveButton {
+  float: right;
 }
 
 .welcome button {

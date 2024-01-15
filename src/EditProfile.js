@@ -29,7 +29,7 @@ const EditProfile = () => {
             setFirstName(profile.firstName || '');
             setLastName(profile.lastName || '');
             setPhoneNumber(profile.phoneNumber || '');
-            setPassword('');
+            setPassword(null);
             setEducation(profile.education || '');
             setOccupation(profile.occupation || '');
         }
@@ -72,6 +72,36 @@ const EditProfile = () => {
             .catch(error => {
                 setIsPendingEdit(false);
             });
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+    
+        const isConfirmed = window.confirm("Are you sure you want to delete your profile?");
+    
+        if (isConfirmed) {
+            const apiUrl = isTeacher
+                ? 'http://localhost:8080/api/teachers/' + profile.userId
+                : 'http://localhost:8080/api/students/' + profile.userId;
+    
+            fetch(apiUrl, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (response.ok) {
+                        localStorage.removeItem('jwtToken');
+                        localStorage.removeItem('user');
+                        localStorage.removeItem('isTeacher');
+                        history.push('/'); // Manually navigate to the home route
+                    } else {
+                        throw new Error("Deletion failed");
+                    }
+                })
+                .catch(error => {
+                    // Handle error during deletion
+                    console.error("Deletion error:", error);
+                });
+        }
     }
 
     return (  
@@ -124,9 +154,10 @@ const EditProfile = () => {
                             value={occupation}
                             onChange={(e) => setOccupation(e.target.value)}
                         />}
-                        {!isPendingEdit && <button>Save</button>}
+                        {!isPendingEdit && <button id="saveButton">Save</button>}
                         {isPendingEdit && <button disabled>Save loading...</button>}
                     </form>
+                    <button id="deleteButton" onClick={handleDelete}>Delete profile</button>
                 </div>
             )}
         </div>
