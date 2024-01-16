@@ -29,7 +29,7 @@
   color: #f1356d;
 }
 .content {
-  max-width: 600px;
+  max-width: 900px;
   margin: 40px auto;
   padding: 20px;
 }
@@ -83,7 +83,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register, .login, .edit-profile, .edit-course, .no-courses, .add-course {
+.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
@@ -120,7 +120,7 @@
   cursor: pointer;
 }
 
-.no-courses button, .course-list button {
+.no-courses button, #add-course {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -167,4 +167,21 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.filter-courses {
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.search-courses {
+  float: left;
+}
+
+.search-courses-filter {
+  float: right;
+}
+
+.search-courses-filter select, .search-courses input {
+  margin-right: 8px;
 }

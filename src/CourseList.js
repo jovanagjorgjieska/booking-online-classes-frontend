@@ -1,14 +1,117 @@
+import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 
 const CourseList = ({courses, title}) => {
 
     const isTeacher = localStorage.getItem('isTeacher');
+    const [courseNameText, setCourseNameText] = useState('');
+    const [courseType, setCourseType] = useState(null);
+    const [courseCategory, setCourseCategory] = useState(null);
+    const [isPendingSearch, setIsPendingSearch] = useState(false);
+    const [coursesToShow, setCoursesToShow] = useState([]);
+
+
+    useEffect(() => {
+        if (courses) {
+            setCoursesToShow(courses);
+        }
+    }, [courses]);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+
+        const searchQuery = encodeURIComponent(courseNameText);
+
+        setIsPendingSearch(true);
+
+        fetch(`http://localhost:8080/api/courses/title?courseName=${searchQuery}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Search failed");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setIsPendingSearch(false);
+                setCoursesToShow(data);
+            })
+            .catch(error => {
+                setIsPendingSearch(false);
+            });
+    }
+
+    const handleFilter = (e) => {
+        e.preventDefault();
+
+        const searchCategoryQuery = encodeURIComponent(courseCategory);
+        const searchTypeQuery = encodeURIComponent(courseType);
+    
+        let newApiUrlFilter = '';
+    
+        if (courseCategory === null) {
+          newApiUrlFilter = `http://localhost:8080/api/courses/filter?type=${searchTypeQuery}`;
+        } else if (courseType === null) {
+          newApiUrlFilter = `http://localhost:8080/api/courses/filter?category=${searchCategoryQuery}`;
+        } else {
+          newApiUrlFilter = `http://localhost:8080/api/courses/filter?category=${searchCategoryQuery}&type=${searchTypeQuery}`;
+        }
+
+        setIsPendingSearch(true);
+
+        fetch(newApiUrlFilter)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Search failed");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setIsPendingSearch(false);
+                setCoursesToShow(data);
+            })
+            .catch(error => {
+                setIsPendingSearch(false);
+            });
+    }
 
     return (
         <div className="course-list">
             <h2>{title}</h2>
+            {!isTeacher && <div className="filter-courses">
+                <div className="search-courses">
+                    <input
+                        type="text"
+                        value={courseNameText}
+                        onChange={(e) => setCourseNameText(e.target.value)}
+                    />
+                    <button onClick={handleSearch}>Search</button>
+                </div>
+                <div className="search-courses-filter">
+                    <select
+                        value={courseType}
+                        onChange={(e) => setCourseType(e.target.value)}
+                    >
+                        <option value="INDIVIDUAL">Individual course</option>
+                        <option value="GROUP">Group course</option>
+                    </select>
+                    <select
+                        value={courseCategory}
+                        onChange={(e) => setCourseCategory(e.target.value)}
+                    >
+                        <option value="PROGRAMMING_LANGUAGES">Programming languages</option>
+                        <option value="WEB_DEVELOPMENT">Web development</option>
+                        <option value="DATA_SCIENCE">Data science</option>
+                        <option value="SOFTWARE_ENGINEERING">Software engineering</option>
+                        <option value="SOFTWARE_TESTING">Software testing</option>
+                        <option value="LANGUAGES">Languages</option>
+                        <option value="MATHEMATICS">Mathematics</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                    <button onClick={handleFilter}>Filter</button>
+                </div>
+            </div>}
             <div className="courses">
-            {courses.map((course) => (
+            {coursesToShow.map((course) => (
                 <div className="course-preview" key={course.id}>
                     <Link to={`/courses/${course.courseId}`}>
                         <p className="course-type">{course.courseType} COURSE</p>
@@ -20,7 +123,7 @@ const CourseList = ({courses, title}) => {
             ))}
             </div>
             {isTeacher && <div className="center-button-container">
-                <Link to="/addCourse"><button>Add new course</button></Link>
+                <Link to="/addCourse"><button id='add-course'>Add new course</button></Link>
             </div>}
         </div>
     );
