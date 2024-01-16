@@ -11,6 +11,7 @@ import ViewProfile from './ViewProfile';
 import EditCourse from './EditCourse';
 import AddCourse from './AddCourse';
 import MyBookings from './MyBookings';
+import AddReview from './AddReview';
 
 function App() {
   return (
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route path="/bookings">
               <MyBookings/>
+            </Route>
+            <Route path="/addReview">
+              <AddReview/>
             </Route>
           </Switch>
         </div> 

@@ -84,12 +84,12 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-bookings {
+.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-bookings, .add-review {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
-.register label, .login label, .edit-profile label, .edit-course label, .add-course label {
+.register label, .login label, .edit-profile label, .edit-course label, .add-course label, .add-review label {
   text-align: left;
   display: block;
 }
@@ -104,7 +104,7 @@
   margin-bottom: 30px;
 }
 .register input, .register select, .login input, .edit-profile input, .edit-course input, .edit-course select, .edit-course textarea,
-.add-course input, .add-course select, .add-course textarea {
+.add-course input, .add-course select, .add-course textarea, .add-review input, .add-review textarea {
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
@@ -112,7 +112,7 @@
   box-sizing: border-box;
   display: block;
 }
-.register button, .view-profile button, #deleteButton, .add-course button, #cancel-button {
+.register button, .view-profile button, #deleteButton, .add-course button, #cancel-button, .add-review button {
   background: #f1356d;
   color: #fff;
   border: 0;
