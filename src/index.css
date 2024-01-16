@@ -84,12 +84,12 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-bookings, .add-review {
+.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-bookings, .add-review, .edit-review, .no-reviews {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
-.register label, .login label, .edit-profile label, .edit-course label, .add-course label, .add-review label {
+.register label, .login label, .edit-profile label, .edit-course label, .add-course label, .add-review label, .edit-review label {
   text-align: left;
   display: block;
 }
@@ -104,7 +104,8 @@
   margin-bottom: 30px;
 }
 .register input, .register select, .login input, .edit-profile input, .edit-course input, .edit-course select, .edit-course textarea,
-.add-course input, .add-course select, .add-course textarea, .add-review input, .add-review textarea {
+.add-course input, .add-course select, .add-course textarea, .add-review input, .add-review textarea, 
+.edit-review input, .edit-review textarea{
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
@@ -112,7 +113,7 @@
   box-sizing: border-box;
   display: block;
 }
-.register button, .view-profile button, #deleteButton, .add-course button, #cancel-button, .add-review button {
+.register button, .view-profile button, #deleteButton, .add-course button, #cancel-button, .add-review button, .edit-review button {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -121,7 +122,7 @@
   cursor: pointer;
 }
 
-.no-courses button, #add-course, .no-bookings button {
+.no-courses button, #add-course, .no-bookings button, .no-reviews button {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -166,7 +167,7 @@
   justify-content: end;
 }
 
-.booking-preview {
+.booking-preview, .review-preview {
   display: flex;
   align-items: center;
 }
@@ -176,14 +177,24 @@
   padding-left: 20px;
 }
 
+.review-left {
+  width: 90%;
+  padding-left: 20px;
+}
+
 .booking-left h3 {
   color: darkgreen;
   font-weight: bold;
 }
 
-.booking-left p {
-  color: white;
+.review-left h3 {
+  color: darkgreen;
   font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.booking-left p {
+  color: darkgreen;
 }
 
 .booking-right {
@@ -191,7 +202,17 @@
   padding-left: 20px;
 }
 
-.booking-right button {
+.review-right {
+  width: 10%;
+  display: block;
+}
+
+.review-right-student {
+  padding-top: 50px;
+}
+
+.booking-right button, .review-right button {
+  float: right;
   margin: 5px;
 }
 
@@ -231,10 +252,52 @@
   margin: 20px;
   height: 100px;
   border-radius: 10px;
-  background-color: lightgreen;
+  background-color: #D3F2D5;
   border: 1px solid darkgreen;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+}
+
+.review-preview {
+  padding: 15px;
+  margin: 20px;
+  height: auto;
+  border-radius: 3px;
+  border: 1px solid darkgreen;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
 }
 
 .booking-preview button {
   float: right;
+}
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details-container {
+  width: 70%;
+  background-color: #f1356d;
+}
+
+.score {
+  padding: 5px;
+  width: fit-content;
+  border-radius: 45%;
+  border: 2px solid darkgreen;
+  background-color: bisque;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-desc {
+  font-style: italic;
+}
+
+.review-student {
+  position: relative;
+  float: right;
+  font-weight: bold;
+  color: darkgreen;
 }

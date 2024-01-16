@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import useFetch from "./useFetch";
 
 const AddReview = () => {
@@ -23,6 +23,7 @@ const AddReview = () => {
     }, [profile]);
 
     const handleSave = (e) => {
+        e.preventDefault();
 
         const newReview = {
             studentId,
@@ -41,7 +42,7 @@ const AddReview = () => {
             .then(() => {
                 console.log("New review added");
                 setIsPending(false);
-                history.push('/home');
+                history.push('/reviews');
             })
             .catch(error => {
                 console.error("Error adding review", error);

@@ -12,6 +12,8 @@ import EditCourse from './EditCourse';
 import AddCourse from './AddCourse';
 import MyBookings from './MyBookings';
 import AddReview from './AddReview';
+import MyReviews from './MyReviews';
+import EditReview from './EditReview';
 
 function App() {
   return (
@@ -55,6 +57,12 @@ function App() {
             </Route>
             <Route path="/addReview">
               <AddReview/>
+            </Route>
+            <Route exact path="/reviews">
+              <MyReviews/>
+            </Route>
+            <Route path="/reviews/:id/edit">
+              <EditReview/>
             </Route>
           </Switch>
         </div> 
