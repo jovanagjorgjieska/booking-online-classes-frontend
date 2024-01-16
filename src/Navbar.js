@@ -12,10 +12,15 @@ const Navbar = () => {
 
     return ( 
         <nav className="navbar">
-            <h1>SwiftLearn</h1>
-            <a href="/home">Home</a>
-            <a href="/profile">Profile</a>
-            <a onClick={handleLogout}>Log out</a>
+            <div className="left-navbar">
+                <h1><a href="/home">SwiftLearn</a></h1>
+            </div>
+            <div className="right-navbar">
+                <a href="/profile">My reviews</a>
+                <a href="/bookings">My bookings</a>
+                <a href="/profile">Profile</a>
+                <a onClick={handleLogout}>Log out</a>
+            </div>
         </nav>
     );
 }

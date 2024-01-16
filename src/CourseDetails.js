@@ -5,7 +5,6 @@ import useFetch from "./useFetch";
 
 const CourseDetails = () => {
     const isTeacher = localStorage.getItem('isTeacher');
-    console.log(isTeacher);
     const {id} = useParams();
     const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id);
     const loggedEmail = localStorage.getItem('user');

@@ -10,6 +10,7 @@ import EditProfile from './EditProfile';
 import ViewProfile from './ViewProfile';
 import EditCourse from './EditCourse';
 import AddCourse from './AddCourse';
+import MyBookings from './MyBookings';
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
             </Route>
             <Route path="/profile/edit">
               <EditProfile/>
+            </Route>
+            <Route path="/bookings">
+              <MyBookings/>
             </Route>
           </Switch>
         </div> 

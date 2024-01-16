@@ -10,11 +10,11 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
 }
-.navbar h1 {
+.navbar h1 a {
   color: #f1356d;
 }
 .navbar .links {
@@ -28,6 +28,7 @@
 .navbar a:hover {
   color: #f1356d;
 }
+
 .content {
   max-width: 900px;
   margin: 40px auto;
@@ -83,7 +84,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome {
+.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-bookings {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
@@ -111,7 +112,7 @@
   box-sizing: border-box;
   display: block;
 }
-.register button, .view-profile button, #deleteButton, .add-course button {
+.register button, .view-profile button, #deleteButton, .add-course button, #cancel-button {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -120,7 +121,7 @@
   cursor: pointer;
 }
 
-.no-courses button, #add-course {
+.no-courses button, #add-course, .no-bookings button {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -134,7 +135,7 @@
   font-weight: bold;
 }
 
-.login button, #saveButton {
+.login button, #saveButton, #review-button {
   background: darkgreen;
   color: #fff;
   border: 0;
@@ -147,12 +148,51 @@
   text-align: center;
 }
 
-#deleteButton {
+#deleteButton, .left-navbar {
   float: left;
 }
 
-#saveButton {
+#saveButton, .right-navbar {
   float: right;
+}
+
+.left-navbar {
+  width: 50%;
+}
+
+.right-navbar {
+  width: 50%;
+  display: flex;
+  justify-content: end;
+}
+
+.booking-preview {
+  display: flex;
+  align-items: center;
+}
+
+.booking-left {
+  width: 80%;
+  padding-left: 20px;
+}
+
+.booking-left h3 {
+  color: darkgreen;
+  font-weight: bold;
+}
+
+.booking-left p {
+  color: white;
+  font-weight: bold;
+}
+
+.booking-right {
+  width: 20%;
+  padding-left: 20px;
+}
+
+.booking-right button {
+  margin: 5px;
 }
 
 .welcome button {
@@ -184,4 +224,17 @@
 
 .search-courses-filter select, .search-courses input {
   margin-right: 8px;
+}
+
+.booking-preview {
+  padding-right: 10px;
+  margin: 20px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: lightgreen;
+  border: 1px solid darkgreen;
+}
+
+.booking-preview button {
+  float: right;
 }
