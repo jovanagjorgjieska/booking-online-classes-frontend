@@ -3,6 +3,23 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 const Bookings = ({ bookings }) => {
     const isTeacher = localStorage.getItem('isTeacher');
 
+    const handleDelete = (bookingId) => {
+    
+        fetch('http://localhost:8080/api/bookings/' + bookingId, {
+                method: 'DELETE',
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
+                        throw new Error("Cancellation failed");
+                    }
+                })
+                .catch(error => {
+                    console.error("Cancellation error:", error);
+                });
+    }
+
     return (  
         <div className="bookings">
             <h2>My bookings</h2>
@@ -17,7 +34,7 @@ const Bookings = ({ bookings }) => {
                         <Link to={`/addReview?courseId=${booking.course.courseId}`}>
                             <button id='review-button'>Write a review</button>
                         </Link>
-                        <button id='cancel-button'>Cancel</button>
+                        <button id='cancel-button' onClick={() => handleDelete(booking.bookingId)}>Cancel</button>
                     </div>
                 </div>
             ))}
