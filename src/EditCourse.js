@@ -9,7 +9,7 @@ const EditCourse = () => {
     const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id);
 
     const [courseName, setCourseName] = useState('');
-    const [courseDescription, setCourseDescription] = useState('');
+    const [description, setDescription] = useState('');
     const [availablePositions, setAvailablePositions] = useState('');
     const [courseType, setCourseType] = useState('');
     const [courseCategory, setCourseCategory] = useState('');
@@ -24,7 +24,7 @@ const EditCourse = () => {
     useEffect(() => {
         if(course) {
             setCourseName(course.courseName || '');
-            setCourseDescription(course.description || '');
+            setDescription(course.description || '');
             setAvailablePositions(course.availablePositions || 0);
             setCourseType(course.courseType || '');
             setCourseCategory(course.courseCategory || '');
@@ -40,7 +40,7 @@ const EditCourse = () => {
 
         const courseToUpdate = { 
             courseName, 
-            courseDescription, 
+            description, 
             availablePositions, 
             courseType, 
             courseCategory,
@@ -107,8 +107,8 @@ const EditCourse = () => {
                         />
                         <label>Course description:</label>
                         <textarea
-                            value={courseDescription}
-                            onChange={(e) => setCourseDescription(e.target.value)}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
                         <label>Available positions:</label>
                         <input

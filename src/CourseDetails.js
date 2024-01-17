@@ -59,23 +59,40 @@ const CourseDetails = () => {
             });
     }
 
-    return (  
+    return (
         <div className="course-details">
-            {isPending && <div>Loading...</div>}
-            {error && <div>{error}</div>}
-            {course && (
-                <article>
-                    <h2>{course.courseName}</h2>
-                    <p className>{course.courseType} COURSE</p>
-                    <br></br>
-                    <p><Link to={`/teachers/${course.teacher.userId}`}>Teacher: {course.teacher.firstName} {course.teacher.lastName}</Link></p>
-                    <div>{course.description}</div>
-                    {!isTeacher && !isPendingBook && !isBookingSuccessful && <button onClick={handleBook}>Book</button>}
-                    {isTeacher && <Link to={`/courses/${course.courseId}/edit`}><button>Edit course</button></Link>}
-                    {isPendingBook && <button disabled>Booking loading...</button>}
-                    {isBookingSuccessful && <div>Booking successful!</div>}
-                </article>
-            )}
+            <div className="course-container">
+                {isPending && <div>Loading...</div>}
+                {error && <div className="error">{error}</div>}
+                {course && (
+                    <article>
+                        <h2>{course.courseName}</h2>
+                        <p className="course-type">{course.courseType} COURSE</p>
+                        <br />
+                        <p id="course-teacher">
+                            <Link to={`/teachers/${course.teacher.userId}`} style={{ textDecoration: 'none' }}>
+                                Teacher: <span className="teacher-link">{course.teacher.firstName} {course.teacher.lastName}</span>
+                            </Link>
+                        </p>
+                        <div className="course-description">{course.description}</div>
+                        <p>Category: {course.courseCategory}</p>
+                        <p>Available positions: {course.availablePositions}</p>
+                        <p className="course-price">Price: {course.price}MKD</p>
+                        {!isTeacher && !isPendingBook && !isBookingSuccessful && (
+                            <button className="book-button" onClick={handleBook}>
+                                Book Now
+                            </button>
+                        )}
+                        {isTeacher && (
+                            <Link to={`/courses/${course.courseId}/edit`}>
+                                <button className="edit-button">Edit course</button>
+                            </Link>
+                        )}
+                        {isPendingBook && <button className="loading-button" disabled>Booking loading...</button>}
+                        {isBookingSuccessful && <div className="success-message">Booking successful!</div>}
+                    </article>
+                )}
+            </div>
         </div>
     );
 }

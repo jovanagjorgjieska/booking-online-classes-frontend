@@ -121,8 +121,8 @@ const CourseList = ({courses, title}) => {
                     <Link to={`/courses/${course.courseId}`}>
                         <p className="course-type">{course.courseType} COURSE</p>
                         <h2>{course.courseName}</h2>
-                        <p>Teacher: {course.teacher.firstName} {course.teacher.lastName}</p>
-                        <p>Price: {course.price}€</p>
+                        <p className="course-teacher">Teacher: {course.teacher.firstName} {course.teacher.lastName}</p>
+                        <p className="course-price-small">{course.price}MKD</p>
                     </Link>
                 </div>
             ))}
