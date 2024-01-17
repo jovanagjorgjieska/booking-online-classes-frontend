@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 
 const CourseList = ({courses, title}) => {
-
+    const token = localStorage.getItem('jwtToken');
     const isTeacher = localStorage.getItem('isTeacher');
     const [courseNameText, setCourseNameText] = useState('');
     const [courseType, setCourseType] = useState(null);
@@ -26,7 +26,11 @@ const CourseList = ({courses, title}) => {
 
         setIsPendingSearch(true);
 
-        fetch(`http://localhost:8080/api/courses/title?courseName=${searchQuery}`)
+        fetch(`http://localhost:8080/api/courses/title?courseName=${searchQuery}`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Search failed");
@@ -60,7 +64,11 @@ const CourseList = ({courses, title}) => {
 
         setIsPendingSearch(true);
 
-        fetch(newApiUrlFilter)
+        fetch(newApiUrlFilter, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Search failed");

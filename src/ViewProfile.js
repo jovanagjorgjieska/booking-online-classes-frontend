@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 const ViewProfile = () => {
+    const token = localStorage.getItem('jwtToken');
     const [isTeacher, setIsTeacher] = useState(false);
     const email = localStorage.getItem('user');
-    const { data: profile, error, isPending } = useFetch('http://localhost:8080/api/auth/' + email);
+    const { data: profile, error, isPending } = useFetch('http://localhost:8080/api/auth/' + email, token);
 
     useEffect(() => {
         if (profile?.userRole === 'TEACHER') {

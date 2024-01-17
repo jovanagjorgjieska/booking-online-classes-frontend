@@ -6,11 +6,13 @@ import useFetch from "./useFetch";
 const Home = () => {
     const token = localStorage.getItem('jwtToken');
     const loggedUser = localStorage.getItem('user');
-    const {data: profile, fetchUserError, fetchUserIsPending} = useFetch('http://localhost:8080/api/auth/' + loggedUser);
+    const {data: profile, fetchUserError, fetchUserIsPending} = useFetch(
+        'http://localhost:8080/api/auth/' + loggedUser, token);
     const [isTeacher, setIsTeacher] = useState(false); 
 
     useEffect(() => {
         if (profile?.userRole === "TEACHER") {
+            console.log(profile);
             setIsTeacher(true);
             localStorage.setItem('isTeacher', isTeacher);
         }
@@ -20,7 +22,7 @@ const Home = () => {
             ? 'http://localhost:8080/api/teachers/' + profile.userId + '/courses'
             : 'http://localhost:8080/api/courses';
 
-    const {data: courses, isPending, error} = useFetch(apiUrl);
+    const {data: courses, isPending, error} = useFetch(apiUrl, token);
 
     return ( 
         <div className="home">

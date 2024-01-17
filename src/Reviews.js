@@ -2,12 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Reviews = ({ reviews }) => {
+    const token = localStorage.getItem('jwtToken');
     const isTeacher = localStorage.getItem('isTeacher');
 
     const handleDelete = (reviewId) => {
     
         fetch('http://localhost:8080/api/reviews/' + reviewId, {
                 method: 'DELETE',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
             })
                 .then(response => {
                     if (response.ok) {

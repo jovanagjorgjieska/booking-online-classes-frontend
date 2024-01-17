@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const EditReview = () => {
     const {id} = useParams();
-    const {data: review, error, isPending} = useFetch('http://localhost:8080/api/reviews/' + id);
+    const token = localStorage.getItem('jwtToken');
+    const {data: review, error, isPending} = useFetch('http://localhost:8080/api/reviews/' + id, token);
 
     const [studentId, setStudentId] = useState('');
     const [score, setScore] = useState('');
@@ -32,7 +33,10 @@ const EditReview = () => {
 
         fetch('http://localhost:8080/api/reviews/' + id, {
             method: 'PUT',
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify(reviewToUpdate)
         })
             .then(response => {

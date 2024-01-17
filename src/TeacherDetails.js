@@ -3,7 +3,8 @@ import useFetch from "./useFetch";
 
 const TeacherDetails = () => {
     const {id} = useParams();
-    const {data: teacher, error, isPending} = useFetch('http://localhost:8080/api/teachers/' + id);
+    const token = localStorage.getItem('jwtToken');
+    const {data: teacher, error, isPending} = useFetch('http://localhost:8080/api/teachers/' + id, token);
 
     return (  
         <div className="view-profile">

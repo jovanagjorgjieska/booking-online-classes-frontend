@@ -4,11 +4,12 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import useFetch from "./useFetch";
 
 const CourseDetails = () => {
+    const token = localStorage.getItem('jwtToken');
     const isTeacher = localStorage.getItem('isTeacher');
     const {id} = useParams();
-    const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id);
+    const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id, token);
     const loggedEmail = localStorage.getItem('user');
-    const {data: profile, loggedUserError, isPendingLoggedUser} = useFetch('http://localhost:8080/api/auth/' + loggedEmail);
+    const {data: profile, loggedUserError, isPendingLoggedUser} = useFetch('http://localhost:8080/api/auth/' + loggedEmail, token);
     const [isPendingBook, setIsPendingBook] = useState(false);
     const [courseId, setCourseId] = useState('');
     const [teacherId, setTeacherId] = useState('');
@@ -41,7 +42,10 @@ const CourseDetails = () => {
 
         fetch('http://localhost:8080/api/bookings', {
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify(booking)
         })
             .then(response => {

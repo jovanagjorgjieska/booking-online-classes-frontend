@@ -3,8 +3,9 @@ import useFetch from "./useFetch";
 import { useHistory } from "react-router-dom";
 
 const EditProfile = () => {
+    const token = localStorage.getItem('jwtToken');
     const loggedEmail = localStorage.getItem('user');
-    const {data: profile, error, isPending} = useFetch('http://localhost:8080/api/auth/' + loggedEmail);
+    const {data: profile, error, isPending} = useFetch('http://localhost:8080/api/auth/' + loggedEmail, token);
 
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -55,7 +56,10 @@ const EditProfile = () => {
 
         fetch(apiUrl, {
             method: 'PUT',
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify(userToUpdate)
         })
             .then(response => {
@@ -86,19 +90,21 @@ const EditProfile = () => {
     
             fetch(apiUrl, {
                 method: 'DELETE',
+                headers: {
+                    "Authorization": `Bearer ${token}` 
+                },
             })
                 .then(response => {
                     if (response.ok) {
                         localStorage.removeItem('jwtToken');
                         localStorage.removeItem('user');
                         localStorage.removeItem('isTeacher');
-                        history.push('/'); // Manually navigate to the home route
+                        history.push('/');
                     } else {
                         throw new Error("Deletion failed");
                     }
                 })
                 .catch(error => {
-                    // Handle error during deletion
                     console.error("Deletion error:", error);
                 });
         }

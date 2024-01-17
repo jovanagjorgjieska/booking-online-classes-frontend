@@ -4,10 +4,11 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import useFetch from "./useFetch";
 
 const AddReview = () => {
+    const token = localStorage.getItem('jwtToken');
     const [score, setScore] = useState('');
     const [description, setDescription] = useState('');
     const loggedEmail = localStorage.getItem('user');
-    const {data: profile, loggedUserError, isPendingLoggedUser} = useFetch('http://localhost:8080/api/auth/' + loggedEmail);
+    const {data: profile, loggedUserError, isPendingLoggedUser} = useFetch('http://localhost:8080/api/auth/' + loggedEmail, token);
     const [studentId, setStudentId] = useState('');
     const [isPending, setIsPending] = useState(false);
 
@@ -36,7 +37,10 @@ const AddReview = () => {
 
         fetch('http://localhost:8080/api/reviews', {
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify(newReview)
         })
             .then(() => {

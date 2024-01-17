@@ -6,7 +6,8 @@ import useFetch from "./useFetch";
 
 const EditCourse = () => {
     const {id} = useParams();
-    const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id);
+    const token = localStorage.getItem('jwtToken');
+    const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id, token);
 
     const [courseName, setCourseName] = useState('');
     const [description, setDescription] = useState('');
@@ -50,7 +51,10 @@ const EditCourse = () => {
 
         fetch('http://localhost:8080/api/teachers/' + teacherId + '/courses/' + courseId, {
             method: 'PUT',
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify(courseToUpdate)
         })
             .then(response => {
@@ -77,6 +81,9 @@ const EditCourse = () => {
         if (isConfirmed) {
             fetch('http://localhost:8080/api/teachers/' + teacherId + '/courses/' + courseId, {
                 method: 'DELETE',
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
             })
                 .then(response => {
                     if (response.ok) {
