@@ -1,4 +1,6 @@
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
     const history = useHistory();
@@ -19,7 +21,7 @@ const Navbar = () => {
                 <a href="/reviews">My reviews</a>
                 <a href="/bookings">My bookings</a>
                 <a href="/profile">Profile</a>
-                <a onClick={handleLogout}>Log out</a>
+                <a onClick={handleLogout}> <FontAwesomeIcon icon={faSignOutAlt} /></a>
             </div>
         </nav>
     );

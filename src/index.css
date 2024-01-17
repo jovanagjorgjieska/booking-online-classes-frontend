@@ -37,19 +37,20 @@
 .course-preview {
   width: 150px;
   height: 200px;
-  background-color:whitesmoke;
-  border: 2px solid #f1356d;
+  background-color: #f4f4f4;
   padding: 10px 16px;
   margin: 20px 0;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .course-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.6);
 }
 .course-preview h2 {
   font-size: 20px;
-  color: #f1356d;
+  color: darkgreen;
   margin-bottom: 8px;
+  margin-top: 45%;
 }
 .course-preview p {
   font-size: small;
@@ -59,11 +60,15 @@
   gap: 50px;
 }
 .course-type {
-  width: 100px;
-  background-color:khaki;
+  width: auto;
+  background-color: khaki;
   float: right;
   font-size: small;
-  margin-bottom: 17px;
+  padding: 3px 5px;
+  font-weight: bold;
+  margin-top: 6px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 .course-preview a {
   text-decoration: none;
@@ -248,22 +253,19 @@
 }
 
 .booking-preview {
-  padding-right: 10px;
-  margin: 20px;
-  height: 100px;
+  background-color: #f4f4f4;
+  padding: 20px;
   border-radius: 10px;
-  background-color: #D3F2D5;
-  border: 1px solid darkgreen;
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 20px;
 }
 
 .review-preview {
-  padding: 15px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 20px;
-  height: auto;
-  border-radius: 3px;
-  border: 1px solid darkgreen;
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
 }
 
 .booking-preview button {
@@ -282,13 +284,13 @@
 }
 
 .score {
-  padding: 5px;
+  padding: 8px;
   width: fit-content;
-  border-radius: 45%;
-  border: 2px solid darkgreen;
-  background-color: bisque;
+  border-radius: 10px;
   font-weight: bold;
   margin-bottom: 10px;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
 .review-desc {
@@ -301,3 +303,53 @@
   font-weight: bold;
   color: darkgreen;
 }
+
+/* Add this to your CSS file or in the head of your HTML document */
+
+.view-profile {
+  align-items: center;
+  height: 100vh;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.profile-container {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container p {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 20px;
+}
+
+.profile-container button {
+  margin: 10px;
+}
+
+button:hover {
+  background-color: darkred;
+}
+
+.profile-label {
+  font-weight: bold;
+}
+
+.register-button {
+  background-color: #f1356d !important;
+}
+
+.search-courses input, .search-courses-filter select {
+  padding-left: 8px;
+  height: 25px;
+  width: 200px;
+  border-radius: 6px;
+  border: 1px solid lightgrey;
+}
+

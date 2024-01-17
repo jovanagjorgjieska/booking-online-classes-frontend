@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 
 const CourseList = ({courses, title}) => {
 
@@ -83,14 +85,16 @@ const CourseList = ({courses, title}) => {
                         type="text"
                         value={courseNameText}
                         onChange={(e) => setCourseNameText(e.target.value)}
+                        placeholder="Search by name" 
                     />
-                    <button onClick={handleSearch}>Search</button>
+                    <FontAwesomeIcon onClick={handleSearch} icon={faSearch} />
                 </div>
                 <div className="search-courses-filter">
                     <select
                         value={courseType}
                         onChange={(e) => setCourseType(e.target.value)}
                     >
+                        <option value="" disabled hidden>Type</option>
                         <option value="INDIVIDUAL">Individual course</option>
                         <option value="GROUP">Group course</option>
                     </select>
@@ -98,6 +102,7 @@ const CourseList = ({courses, title}) => {
                         value={courseCategory}
                         onChange={(e) => setCourseCategory(e.target.value)}
                     >
+                        <option value="" disabled hidden>Category</option>
                         <option value="PROGRAMMING_LANGUAGES">Programming languages</option>
                         <option value="WEB_DEVELOPMENT">Web development</option>
                         <option value="DATA_SCIENCE">Data science</option>
@@ -107,7 +112,7 @@ const CourseList = ({courses, title}) => {
                         <option value="MATHEMATICS">Mathematics</option>
                         <option value="OTHER">Other</option>
                     </select>
-                    <button onClick={handleFilter}>Filter</button>
+                    <FontAwesomeIcon onClick={handleFilter} icon={faFilter} />
                 </div>
             </div>}
             <div className="courses">
