@@ -80,7 +80,11 @@ const CourseDetails = () => {
                         </p>
                         <div className="course-description">{course.description}</div>
                         <p>Category: {course.courseCategory}</p>
-                        <p>Available positions: {course.availablePositions}</p>
+                        {course.courseType === "GROUP" && <p>Available positions: {course.availablePositions}</p>}
+                        <div className="course-details">
+                            <p>Course details:</p>
+                            <p>{course.details}</p>
+                        </div>
                         <p className="course-price">Price: {course.price}MKD</p>
                         {!isTeacher && !isPendingBook && !isBookingSuccessful && (
                             <button className="book-button" onClick={handleBook}>

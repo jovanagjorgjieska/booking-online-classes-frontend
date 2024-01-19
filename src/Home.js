@@ -29,7 +29,7 @@ const Home = () => {
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
             {courses && courses.length > 0 && isTeacher && <CourseList courses={courses} title="Your Courses"/>}
-            {courses && profile && !isTeacher && <CourseList courses={courses} title="All Courses"/>}
+            {courses && courses.length > 0 && profile && !isTeacher && <CourseList courses={courses} title="All Courses"/>}
             {courses && courses.length === 0 && <NoCourses/>}
         </div>
     );

@@ -8,11 +8,13 @@ const AddCourse = () => {
     const {data: profile, error, isPending} = useFetch('http://localhost:8080/api/auth/' + loggedEmail, token);
 
     const [courseName, setCourseName] = useState('');
-    const [courseDescription, setCourseDescription] = useState('');
+    const [description, setDescription] = useState('');
+    const [details, setDetails] = useState('');
     const [availablePositions, setAvailablePositions] = useState('');
     const [courseType, setCourseType] = useState('');
     const [courseCategory, setCourseCategory] = useState('');
     const [price, setPrice] = useState('');
+    const [isAvailablePositionsDisabled, setIsAvailablePositionsDisabled] = useState(true);
 
     const [isPendingSave, setIsPendingSave] = useState(false);
 
@@ -26,12 +28,19 @@ const AddCourse = () => {
         }
     }, [profile]);
 
+    useEffect(() => {
+        if (courseType) {
+            setIsAvailablePositionsDisabled(courseType !== "GROUP");
+        }
+    }, [courseType]);
+
     const handleSave = (e) => {
         e.preventDefault();
 
         const courseToSave = { 
             courseName, 
-            courseDescription, 
+            description, 
+            details,
             availablePositions, 
             courseType, 
             courseCategory,
@@ -73,22 +82,25 @@ const AddCourse = () => {
                     value={courseName}
                     onChange={(e) => setCourseName(e.target.value)}
                 />
-                <label>Course description:</label>
+                <label>Short description:</label>
                 <textarea
-                    value={courseDescription}
-                    onChange={(e) => setCourseDescription(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Write few sentences explaining the purpose of your course"
                 ></textarea>
-                <label>Available positions:</label>
-                <input
-                    type="number"
-                    value={availablePositions}
-                    onChange={(e) => setAvailablePositions(e.target.value)}
-                />
+                <label>Details:</label>
+                <textarea
+                    value={details}
+                    onChange={(e) => setDetails(e.target.value)}
+                    placeholder="Provide details for your course: what will be covered, organization, timeline etc."
+                ></textarea>
                 <label>Course type:</label>
                 <select
                     value={courseType}
                     onChange={(e) => setCourseType(e.target.value)}
+                    required
                 >
+                    <option value="" disabled hidden>Choose a type</option>
                     <option value="INDIVIDUAL">Individual course</option>
                     <option value="GROUP">Group course</option>
                 </select>
@@ -96,7 +108,9 @@ const AddCourse = () => {
                 <select
                     value={courseCategory}
                     onChange={(e) => setCourseCategory(e.target.value)}
+                    required
                 >
+                    <option value="" disabled hidden>Choose a category</option>
                     <option value="PROGRAMMING_LANGUAGES">Programming languages</option>
                     <option value="WEB_DEVELOPMENT">Web development</option>
                     <option value="DATA_SCIENCE">Data science</option>
@@ -106,6 +120,13 @@ const AddCourse = () => {
                     <option value="MATHEMATICS">Mathematics</option>
                     <option value="OTHER">Other</option>
                 </select>
+                <label>Available positions:</label>
+                        <input
+                            type="number"
+                            value={availablePositions}
+                            onChange={(e) => setAvailablePositions(e.target.value)}
+                            disabled={isAvailablePositionsDisabled}
+                        />
                 <label>Price:</label>
                 <input
                     type="number"

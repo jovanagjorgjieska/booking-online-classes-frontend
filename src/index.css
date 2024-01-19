@@ -57,6 +57,8 @@
 }
 .courses {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   gap: 50px;
 }
 .course-type {
@@ -114,6 +116,11 @@
   box-sizing: border-box;
   display: block;
 }
+
+.add-course textarea {
+  height: 100px;
+}
+
 .register button, .view-profile button, #deleteButton, .add-course button, #cancel-button, .add-review button, .edit-review button {
   background: #f1356d;
   color: #fff;
@@ -369,7 +376,6 @@ button:hover {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   width: 100%;
-  padding: 20px;
 }
 
 .course-type {
@@ -444,6 +450,16 @@ button {
 .course-teacher {
   height: 60px;
   font-weight: 500;
+}
+
+.course-deatils {
+  margin-top: 10px;
+  padding: 8px;
+  width: fit-content;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #f4f4f4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 

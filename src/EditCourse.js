@@ -11,6 +11,7 @@ const EditCourse = () => {
 
     const [courseName, setCourseName] = useState('');
     const [description, setDescription] = useState('');
+    const [details, setDetails] = useState('');
     const [availablePositions, setAvailablePositions] = useState('');
     const [courseType, setCourseType] = useState('');
     const [courseCategory, setCourseCategory] = useState('');
@@ -26,6 +27,7 @@ const EditCourse = () => {
         if(course) {
             setCourseName(course.courseName || '');
             setDescription(course.description || '');
+            setDetails(course.details || '')
             setAvailablePositions(course.availablePositions || 0);
             setCourseType(course.courseType || '');
             setCourseCategory(course.courseCategory || '');
@@ -42,6 +44,7 @@ const EditCourse = () => {
         const courseToUpdate = { 
             courseName, 
             description, 
+            details,
             availablePositions, 
             courseType, 
             courseCategory,
@@ -116,6 +119,13 @@ const EditCourse = () => {
                         <textarea
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Write few sentences explaining the purpose of your course"
+                        ></textarea>
+                        <label>Course details:</label>
+                        <textarea
+                            value={details}
+                            onChange={(e) => setDetails(e.target.value)}
+                            placeholder="Provide details for your course: what will be covered, organization, timeline etc."
                         ></textarea>
                         <label>Available positions:</label>
                         <input
