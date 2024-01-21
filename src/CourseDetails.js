@@ -81,7 +81,7 @@ const CourseDetails = () => {
                         <div className="course-description">{course.description}</div>
                         <p>Category: {course.courseCategory}</p>
                         {course.courseType === "GROUP" && <p>Available positions: {course.availablePositions}</p>}
-                        <div className="course-details">
+                        <div className="course-content">
                             <p>Course details:</p>
                             <p>{course.details}</p>
                         </div>
