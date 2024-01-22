@@ -298,6 +298,7 @@
 
 .review-desc {
   font-style: italic;
+  margin-top: 10px;
 }
 
 .review-student {
@@ -408,6 +409,8 @@ button {
 .edit-button {
   background-color: #2ecc71;
   color: #fff;
+  width: fit-content !important;
+  float: right;
 }
 
 .loading-button {
@@ -461,5 +464,31 @@ button {
   background-color: #f4f4f4;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.reviews-button {
+  width: fit-content;
+  background-color: #333 !important;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.course-review {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.course-review-score {
+  float: right;
+}
+
+.reviews-title {
+  margin-bottom: 30px;
+}
+
 
 

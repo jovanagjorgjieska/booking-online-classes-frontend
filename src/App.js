@@ -14,6 +14,7 @@ import MyBookings from './MyBookings';
 import AddReview from './AddReview';
 import MyReviews from './MyReviews';
 import EditReview from './EditReview';
+import CourseReviews from './CourseReviews';
 
 function App() {
   return (
@@ -58,11 +59,14 @@ function App() {
             <Route path="/addReview">
               <AddReview/>
             </Route>
-            <Route exact path="/reviews">
+            <Route exact path="/myreviews">
               <MyReviews/>
             </Route>
-            <Route path="/reviews/:id/edit">
+            <Route path="/myreviews/:id/edit">
               <EditReview/>
+            </Route>
+            <Route path="/reviews/:id">
+              <CourseReviews/>
             </Route>
           </Switch>
         </div> 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Reviews = ({ reviews }) => {
     const token = localStorage.getItem('jwtToken');
-    const isTeacher = localStorage.getItem('isTeacher');
 
     const handleDelete = (reviewId) => {
     
@@ -35,18 +34,14 @@ const Reviews = ({ reviews }) => {
                         <p className="score">Score: {review.score}</p>
                         <p className="description"><span style={{ fontWeight: 'bold' }}>Description: </span><span className='review-desc'>"{review.description}"</span></p>
                     </div>
-                    {!isTeacher && <div className="review-right">
-                        <Link to={`/reviews/${review.reviewId}/edit`}>
+                    <div className="review-right">
+                        <Link to={`/myreviews/${review.reviewId}/edit`}>
                             <button id='review-button'>Edit</button>
                         </Link>
                         <div>
-                        <button id='cancel-button' onClick={() => handleDelete(review.reviewId)}>Delete</button>
+                            <button id='cancel-button' onClick={() => handleDelete(review.reviewId)}>Delete</button>
                         </div>
-                    </div>}
-                    {isTeacher && <div className="review-right-student">
-                        <p className="review-student">Student:</p>
-                        <p className="review-student">{review.student.firstName} {review.student.lastName}</p>
-                    </div>}
+                    </div>
                 </div>
             ))}
         </div>

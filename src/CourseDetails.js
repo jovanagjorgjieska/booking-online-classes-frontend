@@ -91,6 +91,9 @@ const CourseDetails = () => {
                                 Book Now
                             </button>
                         )}
+                        <Link to={`/reviews/${course.courseId}`}>
+                            <button className="reviews-button">See reviews</button>
+                        </Link>
                         {isTeacher && (
                             <Link to={`/courses/${course.courseId}/edit`}>
                                 <button className="edit-button">Edit course</button>
