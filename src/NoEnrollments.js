@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-const NoBookings = () => {
+const NoEnrollments = () => {
     return (  
-        <div className="no-bookings">
-            <h2>You haven't book any courses yet!</h2>
+        <div className="no-enrollments">
+            <h2>You haven't enrolled to any courses yet!</h2>
             <Link to="/home"><button>Find a course</button></Link>
         </div>
     );
 }
  
-export default NoBookings;
+export default NoEnrollments;

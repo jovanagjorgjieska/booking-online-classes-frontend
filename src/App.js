@@ -10,7 +10,7 @@ import EditProfile from './EditProfile';
 import ViewProfile from './ViewProfile';
 import EditCourse from './EditCourse';
 import AddCourse from './AddCourse';
-import MyBookings from './MyBookings';
+import MyEnrollments from './MyEnrollments';
 import AddReview from './AddReview';
 import MyReviews from './MyReviews';
 import EditReview from './EditReview';
@@ -53,8 +53,8 @@ function App() {
             <Route path="/profile/edit">
               <EditProfile/>
             </Route>
-            <Route path="/bookings">
-              <MyBookings/>
+            <Route path="/enrollments">
+              <MyEnrollments/>
             </Route>
             <Route path="/addReview">
               <AddReview/>

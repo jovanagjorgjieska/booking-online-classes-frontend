@@ -6,7 +6,7 @@ const NoReviews = () => {
     return (  
         <div className="no-reviews">
             <h2>You don't have any reviews yet.</h2>
-            {!isTeacher && <Link to="/bookings"><button>Review a course</button></Link>}
+            {!isTeacher && <Link to="/enrollments"><button>Review a course</button></Link>}
         </div>
     );
 }

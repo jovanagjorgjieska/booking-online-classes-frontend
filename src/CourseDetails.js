@@ -10,11 +10,11 @@ const CourseDetails = () => {
     const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id, token);
     const loggedEmail = localStorage.getItem('user');
     const {data: profile, loggedUserError, isPendingLoggedUser} = useFetch('http://localhost:8080/api/auth/' + loggedEmail, token);
-    const [isPendingBook, setIsPendingBook] = useState(false);
+    const [isPendingEnroll, setIsPendingEnroll] = useState(false);
     const [courseId, setCourseId] = useState('');
     const [teacherId, setTeacherId] = useState('');
     const [studentId, setStudentId] = useState('');
-    const [isBookingSuccessful, setIsBookingSuccessful] = useState(false);
+    const [isEnrollmentSuccessful, setIsEnrollmentSuccessful] = useState(false);
 
     useEffect(() => {
         if (course) {
@@ -29,37 +29,37 @@ const CourseDetails = () => {
         }
     }, [course]);
 
-    const handleBook = (e) => {
+    const handleEnroll = (e) => {
         e.preventDefault();
 
-        const booking = { 
+        const enrollment = { 
             studentId,
             teacherId,
             courseId
         };
 
-        setIsPendingBook(true);
+        setIsPendingEnroll(true);
 
-        fetch('http://localhost:8080/api/bookings', {
+        fetch('http://localhost:8080/api/enrollments', {
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: JSON.stringify(booking)
+            body: JSON.stringify(enrollment)
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Booking failed");
+                    throw new Error("Enrollment failed");
                 }
-                setIsBookingSuccessful(true);
+                setIsEnrollmentSuccessful(true);
                 return response.json();
             })
             .then(data => {
-                setIsPendingBook(false);
+                setIsPendingEnroll(false);
             })
             .catch(error => {
-                setIsPendingBook(false);
+                setIsPendingEnroll(false);
             });
     }
 
@@ -86,9 +86,9 @@ const CourseDetails = () => {
                             <p>{course.details}</p>
                         </div>
                         <p className="course-price">Price: {course.price}MKD</p>
-                        {!isTeacher && !isPendingBook && !isBookingSuccessful && (
-                            <button className="book-button" onClick={handleBook}>
-                                Book Now
+                        {!isTeacher && !isPendingEnroll && !isEnrollmentSuccessful && (
+                            <button className="enroll-button" onClick={handleEnroll}>
+                                Enroll
                             </button>
                         )}
                         <Link to={`/reviews/${course.courseId}`}>
@@ -99,8 +99,8 @@ const CourseDetails = () => {
                                 <button className="edit-button">Edit course</button>
                             </Link>
                         )}
-                        {isPendingBook && <button className="loading-button" disabled>Booking loading...</button>}
-                        {isBookingSuccessful && <div className="success-message">Booking successful!</div>}
+                        {isPendingEnroll && <button className="loading-button" disabled>Enrollment loading...</button>}
+                        {isEnrollmentSuccessful && <div className="success-message">Enrollment successful!</div>}
                     </article>
                 )}
             </div>

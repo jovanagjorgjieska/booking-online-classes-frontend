@@ -36,7 +36,7 @@
 }
 .course-preview {
   width: 150px;
-  height: 200px;
+  height: 240px;
   background-color: #f4f4f4;
   padding: 10px 16px;
   margin: 20px 0;
@@ -47,7 +47,7 @@
   box-shadow: 1px 3px 5px rgba(0,0,0,0.6);
 }
 .course-preview h2 {
-  font-size: 20px;
+  font-size: 16px;
   color: darkgreen;
   margin-bottom: 8px;
   margin-top: 45%;
@@ -87,7 +87,7 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-bookings, .add-review, .edit-review, .no-reviews {
+.register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-enrollments, .add-review, .edit-review, .no-reviews {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
@@ -130,7 +130,7 @@
   cursor: pointer;
 }
 
-.no-courses button, #add-course, .no-bookings button, .no-reviews button {
+.no-courses button, #add-course, .no-enrollments button, .no-reviews button {
   background: #f1356d;
   color: #fff;
   border: 0;
@@ -175,12 +175,12 @@
   justify-content: end;
 }
 
-.booking-preview, .review-preview {
+.enrollment-preview, .review-preview {
   display: flex;
   align-items: center;
 }
 
-.booking-left {
+.enrollment-left {
   width: 80%;
   padding-left: 20px;
 }
@@ -190,7 +190,7 @@
   padding-left: 20px;
 }
 
-.booking-left h3 {
+.enrollment-left h3 {
   color: darkgreen;
   font-weight: bold;
 }
@@ -201,11 +201,11 @@
   padding-bottom: 10px;
 }
 
-.booking-left p {
+.enrollment-left p {
   color: darkgreen;
 }
 
-.booking-right {
+.enrollment-right {
   width: 20%;
   padding-left: 20px;
 }
@@ -219,7 +219,7 @@
   padding-top: 50px;
 }
 
-.booking-right button, .review-right button {
+.enrollment-right button, .review-right button {
   float: right;
   margin: 5px;
 }
@@ -255,7 +255,7 @@
   margin-right: 8px;
 }
 
-.booking-preview {
+.enrollment-preview {
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
@@ -271,7 +271,7 @@
   margin: 20px;
 }
 
-.booking-preview button {
+.enrollment-preview button {
   float: right;
 }
 
@@ -397,12 +397,12 @@ button {
   width: 100%;
 }
 
-.book-button {
+.enroll-button {
   background-color: #3498db;
   color: #fff;
 }
 
-.book-button:hover {
+.enroll-button:hover {
   background-color: #2980b9;
 }
 
