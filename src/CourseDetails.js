@@ -94,11 +94,16 @@ const CourseDetails = () => {
                         <Link to={`/reviews/${course.courseId}`}>
                             <button className="reviews-button">See reviews</button>
                         </Link>
-                        {isTeacher && (
+                        {isTeacher &&
+                            <Link to={`/courseEnrollments/${course.courseId}`}>
+                                <button className="enrolled-students-button">Enrolled students</button>
+                            </Link>
+                        }
+                        {isTeacher && 
                             <Link to={`/courses/${course.courseId}/edit`}>
                                 <button className="edit-button">Edit course</button>
                             </Link>
-                        )}
+                        }
                         {isPendingEnroll && <button className="loading-button" disabled>Enrollment loading...</button>}
                         {isEnrollmentSuccessful && <div className="success-message">Enrollment successful!</div>}
                     </article>

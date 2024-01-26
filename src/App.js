@@ -15,6 +15,7 @@ import AddReview from './AddReview';
 import MyReviews from './MyReviews';
 import EditReview from './EditReview';
 import CourseReviews from './CourseReviews';
+import CourseEnrollments from './CourseEnrollments';
 
 function App() {
   return (
@@ -55,6 +56,9 @@ function App() {
             </Route>
             <Route path="/enrollments">
               <MyEnrollments/>
+            </Route>
+            <Route path="/courseEnrollments/:id">
+              <CourseEnrollments/>
             </Route>
             <Route path="/addReview">
               <AddReview/>

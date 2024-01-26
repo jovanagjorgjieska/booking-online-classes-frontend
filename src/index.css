@@ -413,6 +413,14 @@ button {
   float: right;
 }
 
+.enrolled-students-button {
+  margin-left: 5px;
+  background-color: #27ae60 !important;
+  color: #fff;
+  width: fit-content !important;
+  float: right;
+}
+
 .loading-button {
   background-color: #95a5a6;
   color: #fff;
@@ -488,6 +496,30 @@ button {
 
 .reviews-title {
   margin-bottom: 30px;
+}
+
+.enrollments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+.enrollments-table th, .enrollments-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.enrollments-table th {
+  background-color: #f2f2f2;
+}
+
+.enrollments-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.enrollments-table tbody tr:hover {
+  background-color: #e0e0e0;
 }
 
 

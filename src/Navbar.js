@@ -20,7 +20,7 @@ const Navbar = () => {
             </div>
             <div className="right-navbar">
                 {!isTeacher && <a href="/myreviews">My reviews</a>}
-                <a href="/enrollments">My enrollments</a>
+                {!isTeacher && <a href="/enrollments">My enrollments</a>}
                 <a href="/profile">Profile</a>
                 <a onClick={handleLogout}> <FontAwesomeIcon icon={faSignOutAlt} /></a>
             </div>
