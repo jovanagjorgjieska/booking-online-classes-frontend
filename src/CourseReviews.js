@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import useFetch from "./useFetch";
-import NoReviews from "./NoReviews";
-import Reviews from "./Reviews";
 import CourseReviewList from "./CourseReviewList";
 import NoReviewsCourse from "./NoReviewsCourse";
 

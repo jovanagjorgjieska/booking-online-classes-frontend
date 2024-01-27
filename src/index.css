@@ -96,6 +96,10 @@
   text-align: left;
   display: block;
 }
+.add-review label {
+  font-weight: bold;
+  margin-top: 25px;
+}
 .register h2 {
   font-size: 20px;
   color: #f1356d;
@@ -488,6 +492,7 @@ button {
   padding: 10px;
   border: 1px solid black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
 }
 
 .course-review-score {

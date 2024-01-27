@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import useFetch from "./useFetch";
+import StarRating from './StarRating';
 
 const AddReview = () => {
     const token = localStorage.getItem('jwtToken');
     const [score, setScore] = useState('');
     const [description, setDescription] = useState('');
+    const [author, setAuthor] = useState('');
     const loggedEmail = localStorage.getItem('user');
     const {data: profile, loggedUserError, isPendingLoggedUser} = useFetch('http://localhost:8080/api/auth/' + loggedEmail, token);
-    const [studentId, setStudentId] = useState('');
     const [isPending, setIsPending] = useState(false);
 
     const location = useLocation();
@@ -17,17 +18,11 @@ const AddReview = () => {
 
     const history = useHistory();
 
-    useEffect(() => {
-        if (profile) {
-            setStudentId(profile.userId || '');
-        }
-    }, [profile]);
-
     const handleSave = (e) => {
         e.preventDefault();
 
         const newReview = {
-            studentId,
+            author,
             courseId,
             score,
             description
@@ -58,18 +53,25 @@ const AddReview = () => {
         <div className="add-review">
             <h2>Add Review</h2>
             <form onSubmit={handleSave}>
-                <label>How would you score this course from 1-5?</label>
+                <label>Review's author:</label>
                 <input
-                    type="number"
+                    type="text"
                     required
-                    value={score}
-                    onChange={(e) => setScore(e.target.value)}
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
+                    placeholder="Enter a name or nickname that will be shown on the review"
+                />
+                <label>How would you score this course from 1-5?</label>
+                <StarRating
+                    totalStars={5}
+                    onChange={(newValue) => setScore(newValue)}
                 />
                 <label>How would you describe your experience with this course?</label>
                 <textarea
                     required
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Describe your experience in a few sentences"
                 />
                 <button>Save review</button>
             </form>

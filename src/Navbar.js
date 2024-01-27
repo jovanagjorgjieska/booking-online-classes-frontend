@@ -19,7 +19,6 @@ const Navbar = () => {
                 <h1><a href="/home">EduBooking</a></h1>
             </div>
             <div className="right-navbar">
-                {!isTeacher && <a href="/myreviews">My reviews</a>}
                 {!isTeacher && <a href="/enrollments">My enrollments</a>}
                 <a href="/profile">Profile</a>
                 <a onClick={handleLogout}> <FontAwesomeIcon icon={faSignOutAlt} /></a>

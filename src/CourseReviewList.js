@@ -5,7 +5,7 @@ const CourseReviewList = ({ reviews, title }) => {
             {reviews.map((review) => (
                 <div className="course-review" key={review.id}>
                     <p className="course-review-score">Score: {review.score}</p>
-                    <h3>{review.student.firstName}:</h3>
+                    <h3>{review.author}:</h3>
                     <p className='review-desc'>"{review.description}"</p>
                 </div>
             ))}
