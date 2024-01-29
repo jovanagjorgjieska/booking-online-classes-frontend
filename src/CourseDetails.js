@@ -3,6 +3,8 @@ import {useParams} from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import useFetch from "./useFetch";
 import StarRatingDisplay from "./StarRatingDisplay";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const CourseDetails = () => {
     const token = localStorage.getItem('jwtToken');
@@ -10,12 +12,36 @@ const CourseDetails = () => {
     const {id} = useParams();
     const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id, token);
     const loggedEmail = localStorage.getItem('user');
+    const {data: enrollments, errorEnrollments, isPendingEnrollments} = useFetch('http://localhost:8080/api/enrollments/course/' + id, token);
     const {data: profile, loggedUserError, isPendingLoggedUser} = useFetch('http://localhost:8080/api/auth/' + loggedEmail, token);
     const [isPendingEnroll, setIsPendingEnroll] = useState(false);
     const [courseId, setCourseId] = useState('');
     const [teacherId, setTeacherId] = useState('');
     const [studentId, setStudentId] = useState('');
     const [isEnrollmentSuccessful, setIsEnrollmentSuccessful] = useState(false);
+    const [isStudentAlreadyEnrolled, setIsStudentAlreadyEnrolled] = useState(false);
+    const [areAllPositionsFilled, setAreAllPositionsFilled] = useState(false);
+    const [disabledMessage, setDissabledMessage] = useState('');
+    const [isTooltipVisible, setTooltipVisible] = useState(false);
+
+    useEffect(() => {
+        if (course && profile && enrollments) {
+          const isStudentAlreadyEnrolled = enrollments.some(
+            (enrollment) =>
+              enrollment.student.userId === profile.userId &&
+              enrollment.course.courseId === course.courseId
+          );
+    
+          setIsStudentAlreadyEnrolled(isStudentAlreadyEnrolled);
+    
+          if (course.availablePositions === 0) {
+            setAreAllPositionsFilled(true);
+            setDissabledMessage(
+              'Unfortunately, all positions for this course have been filled.'
+            );
+          }
+        }
+      }, [course, profile, enrollments]);
 
     useEffect(() => {
         if (course) {
@@ -29,7 +55,7 @@ const CourseDetails = () => {
         if (profile) {
             setStudentId(profile.userId || '');
         }
-    }, [course]);
+    }, [profile]);
 
     const handleEnroll = (e) => {
         e.preventDefault();
@@ -77,14 +103,14 @@ const CourseDetails = () => {
                         <br />
                         <p id="course-teacher">
                             <Link to={`/teachers/${course.teacher.userId}`} style={{ textDecoration: 'none' }}>
-                                Teacher: <span className="teacher-link">{course.teacher.firstName} {course.teacher.lastName}</span>
+                                <span className="red-text">Teacher:</span> <span className="teacher-link">{course.teacher.firstName} {course.teacher.lastName}</span>
                             </Link>
                         </p>
                         <div className="course-description">{course.description}</div>
-                        <p>Category: {course.courseCategory}</p>
-                        {course.courseType === "GROUP" && <p>Available positions: {course.availablePositions}</p>}
+                        <p><span className="red-text">Category:</span> {course.courseCategory}</p>
+                        {course.courseType === "GROUP" && <p><span className="red-text">Available positions:</span> {course.availablePositions}</p>}
                         <div className="course-content">
-                            <p>Course details:</p>
+                            <p className="red-text">Course details:</p>
                             <p>{course.details}</p>
                         </div>
 
@@ -98,11 +124,30 @@ const CourseDetails = () => {
                         }
 
                         <p className="course-price">Price: {course.price}MKD</p>
-                        {!isTeacher && !isPendingEnroll && !isEnrollmentSuccessful && (
+                        {!isTeacher && !isStudentAlreadyEnrolled && !areAllPositionsFilled && !isPendingEnroll && !isEnrollmentSuccessful && (
                             <div className="enroll-button-container">
                                 <button className="enroll-button" onClick={handleEnroll}>
                                     Enroll
                                 </button>
+                            </div>
+                        )}
+                        {!isTeacher && isStudentAlreadyEnrolled && (
+                            <div className="enroll-button-container">
+                                <button disabled={true} className="enrolled-button">
+                                    Enrolled
+                                    <FontAwesomeIcon icon={faCheck} style={{ color: 'white', marginLeft: '5px' }} />
+                                </button>
+                            </div>
+                        )}
+                        {!isTeacher && areAllPositionsFilled && !isStudentAlreadyEnrolled && (
+                            <div className="enroll-button-container">
+                                <button
+                                    disabled={true}
+                                    className="enroll-button-disabled"
+                                >
+                                    Enroll
+                                </button>
+                                <p>This course is currently inactive.</p>
                             </div>
                         )}
                         {isTeacher &&
@@ -115,8 +160,12 @@ const CourseDetails = () => {
                                 <button className="edit-button">Edit course</button>
                             </Link>
                         }
-                        {isPendingEnroll && <button className="loading-button" disabled>Enrollment loading...</button>}
-                        {isEnrollmentSuccessful && <div className="success-message">Enrollment successful!</div>}
+                        {isPendingEnroll && <div className="enroll-button-container"><p>Enrollment loading...</p></div>}
+                        {isEnrollmentSuccessful && <div className="success-message">
+                            Enrollment successful!
+                            <br/>
+                            You will soon be contacted by the teacher.
+                        </div>}
                     </article>
                 )}
             </div>

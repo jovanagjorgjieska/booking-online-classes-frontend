@@ -64,14 +64,16 @@
 .course-type-rating {
   width: auto;
   float: right;
-  margin-top: 6px;
 }
 .course-type {
   width: auto;
   background-color: khaki;
+  float: right;
+  font-size: small;
   padding: 3px 5px;
   font-size: small;
   font-weight: bold;
+  margin-top: 6px;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
@@ -79,14 +81,6 @@
   text-decoration: none;
 }
 
-.course-details button {
-  background: #f1356d;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
 .register, .login, .edit-profile, .edit-course, .no-courses, .add-course, .welcome, .no-enrollments, .add-review, .edit-review, .no-reviews {
   max-width: 400px;
   margin: 0 auto;
@@ -155,6 +149,14 @@
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+#review-button:hover {
+  background-color: rgb(13, 57, 13);
+}
+
+#cancel-button:hover {
+  background-color: #c40a42;
 }
 
 .center-button-container {
@@ -341,10 +343,6 @@
   margin: 10px;
 }
 
-button:hover {
-  background-color: darkred;
-}
-
 .profile-label {
   font-weight: bold;
 }
@@ -399,12 +397,37 @@ button {
 
 .enroll-button {
   width: 100px;
-  background-color: #3498db;
+  background-color: #f1356d;
   color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.enrolled-button {
+  width: 100px;
+  background-color: darkgreen !important;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: auto;
+}
+
+.enroll-button-disabled {
+  margin-bottom: 10px;
+  width: 100px;
+  background-color: #797979;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: auto;
 }
 
 .enroll-button:hover {
-  background-color: #2980b9;
+  background-color: #c40a42;
 }
 
 .edit-button {
@@ -423,6 +446,7 @@ button {
 }
 
 .loading-button {
+  width: fit-content;
   background-color: #95a5a6;
   color: #fff;
 }
@@ -436,6 +460,7 @@ button {
 
 .teacher-link {
   font-weight: bold;
+  text-decoration: underline !important;
 }
 
 .course-price {
@@ -491,6 +516,10 @@ button {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-top: 10px;
   border-radius: 6px;
+}
+
+.course-review h3 {
+  color: #f1356d;
 }
 
 .course-review-score {
@@ -587,6 +616,10 @@ button {
   text-align: center; /* Center text within the container */
 }
 
+.red-text {
+  font-weight: bolder;
+  color: #f1356d;
+}
 
 
 
