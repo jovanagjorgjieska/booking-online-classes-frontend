@@ -61,14 +61,17 @@
   justify-content: flex-start;
   gap: 50px;
 }
+.course-type-rating {
+  width: auto;
+  float: right;
+  margin-top: 6px;
+}
 .course-type {
   width: auto;
   background-color: khaki;
-  float: right;
-  font-size: small;
   padding: 3px 5px;
+  font-size: small;
   font-weight: bold;
-  margin-top: 6px;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
@@ -76,9 +79,6 @@
   text-decoration: none;
 }
 
-.course-details div {
-  margin: 20px 0;
-}
 .course-details button {
   background: #f1356d;
   color: #fff;
@@ -383,10 +383,6 @@ button:hover {
   width: 100%;
 }
 
-.course-type {
-  font-weight: bold;
-}
-
 .course-description {
   margin-top: 10px;
 }
@@ -402,6 +398,7 @@ button {
 }
 
 .enroll-button {
+  width: 100px;
   background-color: #3498db;
   color: #fff;
 }
@@ -493,6 +490,7 @@ button {
   border: 1px solid black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-top: 10px;
+  border-radius: 6px;
 }
 
 .course-review-score {
@@ -526,6 +524,70 @@ button {
 .enrollments-table tbody tr:hover {
   background-color: #e0e0e0;
 }
+
+.star-rating {
+  display: flex;
+}
+
+.star-filled {
+  color: gold; /* or any other color you prefer for filled stars */
+}
+
+.star-empty {
+  color: #ccc; /* or any other color you prefer for empty stars */
+}
+
+.star-empty-display {
+  color: black; /* or any other color you prefer for empty stars */
+}
+
+.star-half {
+  position: relative;
+}
+
+.star-half::before {
+  content: '\2605'; /* Unicode character for a solid star */
+  display: inline-block;
+  overflow: hidden;
+  position: absolute;
+  width: 50%;
+  color: gold;
+}
+
+.star-empty::before {
+  content: '\2606'; /* Unicode character for an empty star */
+  display: inline-block;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  color: black;
+}
+
+.course-rating {
+  float: right;
+  margin-top: 5px;
+}
+
+.review-link {
+  font-size: 13px;
+  text-decoration: underline;
+  font-style:oblique;
+}
+
+.star-rating {
+  font-size: 20px;
+  padding-left: 3px;
+}
+
+.enroll-button-container{
+  display: flex;
+  flex-direction: column; /* Use column to stack children vertically */
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Center text within the container */
+}
+
+
 
 
 

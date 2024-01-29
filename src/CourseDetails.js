@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {useParams} from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import useFetch from "./useFetch";
+import StarRatingDisplay from "./StarRatingDisplay";
 
 const CourseDetails = () => {
     const token = localStorage.getItem('jwtToken');
@@ -18,6 +19,7 @@ const CourseDetails = () => {
 
     useEffect(() => {
         if (course) {
+            console.log(course);
             setCourseId(course.courseId || '');
             setTeacherId(course.teacher.userId || '');
         }
@@ -85,15 +87,24 @@ const CourseDetails = () => {
                             <p>Course details:</p>
                             <p>{course.details}</p>
                         </div>
+
+                        {course.rating && course.rating > 0 && 
+                            <p className="course-rating">
+                                <StarRatingDisplay rating={course.rating} />
+                                <Link to={`/reviews/${course.courseId}`}>
+                                    <span className="review-link">See all reviews</span>
+                                </Link>
+                            </p>
+                        }
+
                         <p className="course-price">Price: {course.price}MKD</p>
                         {!isTeacher && !isPendingEnroll && !isEnrollmentSuccessful && (
-                            <button className="enroll-button" onClick={handleEnroll}>
-                                Enroll
-                            </button>
+                            <div className="enroll-button-container">
+                                <button className="enroll-button" onClick={handleEnroll}>
+                                    Enroll
+                                </button>
+                            </div>
                         )}
-                        <Link to={`/reviews/${course.courseId}`}>
-                            <button className="reviews-button">See reviews</button>
-                        </Link>
                         {isTeacher &&
                             <Link to={`/courseEnrollments/${course.courseId}`}>
                                 <button className="enrolled-students-button">Enrolled students</button>

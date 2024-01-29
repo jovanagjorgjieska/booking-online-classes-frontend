@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
+import StarRatingDisplay from "./StarRatingDisplay";
 
 const CourseList = ({courses, title}) => {
     const token = localStorage.getItem('jwtToken');
@@ -127,7 +128,10 @@ const CourseList = ({courses, title}) => {
             {coursesToShow.map((course) => (
                 <div className="course-preview" key={course.id}>
                     <Link to={`/courses/${course.courseId}`}>
-                        <p className="course-type">{course.courseType} COURSE</p>
+                        <p className="course-type-rating">
+                            <p className="course-type">{course.courseType} COURSE</p>
+                            <p style={{ paddingLeft: '15px' }}><StarRatingDisplay rating={course.rating} /></p>
+                        </p>
                         <h2>{course.courseName}</h2>
                         <p className="course-teacher">Teacher: {course.teacher.firstName} {course.teacher.lastName}</p>
                         <p className="course-price-small">{course.price}MKD</p>
