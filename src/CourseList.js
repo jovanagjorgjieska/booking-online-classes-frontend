@@ -7,12 +7,13 @@ import StarRatingDisplay from "./StarRatingDisplay";
 const CourseList = ({courses, title}) => {
     const token = localStorage.getItem('jwtToken');
     const isTeacher = localStorage.getItem('isTeacher');
+    const isStudent = localStorage.getItem('isStudent');
+    const isAdmin = localStorage.getItem('isAdmin');
     const [courseNameText, setCourseNameText] = useState('');
     const [courseType, setCourseType] = useState(null);
     const [courseCategory, setCourseCategory] = useState(null);
     const [isPendingSearch, setIsPendingSearch] = useState(false);
     const [coursesToShow, setCoursesToShow] = useState([]);
-
 
     useEffect(() => {
         if (courses) {
@@ -88,7 +89,7 @@ const CourseList = ({courses, title}) => {
     return (
         <div className="course-list">
             <h2>{title}</h2>
-            {!isTeacher && <div className="filter-courses">
+            {isStudent && <div className="filter-courses">
                 <div className="search-courses">
                     <input
                         type="text"

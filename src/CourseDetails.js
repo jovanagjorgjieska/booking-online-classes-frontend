@@ -9,6 +9,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 const CourseDetails = () => {
     const token = localStorage.getItem('jwtToken');
     const isTeacher = localStorage.getItem('isTeacher');
+    const isStudent = localStorage.getItem('isStudent');
     const {id} = useParams();
     const {data: course, error, isPending} = useFetch('http://localhost:8080/api/courses/' + id, token);
     const loggedEmail = localStorage.getItem('user');
@@ -91,6 +92,19 @@ const CourseDetails = () => {
             });
     }
 
+    const getStatusClass = (status) => {
+        switch (status) {
+            case 'APPROVED':
+                return 'approved-class';
+            case 'DENIED':
+                return 'denied-class';
+            case 'PENDING':
+                return 'pending-class';
+            default:
+                return '';
+        }
+    };    
+
     return (
         <div className="course-details">
             <div className="course-container">
@@ -98,8 +112,17 @@ const CourseDetails = () => {
                 {error && <div className="error">{error}</div>}
                 {course && (
                     <article>
-                        <h2>{course.courseName}</h2>
-                        <p className="course-type">{course.courseType} COURSE</p>
+                        <div className="course-header">
+                            <h2 className="course-title">{course.courseName}</h2>
+                            <div className="course-labels">
+                                {isTeacher && <p className={`course-upload-status ${getStatusClass(course.courseUploadStatus)}`}>
+                                    {course.courseUploadStatus}
+                                </p>}
+                                <p className="course-status">ACTIVE</p>
+                                <p className="course-type">{course.courseType} COURSE</p>
+                            </div>
+                        </div>
+
                         <br />
                         <p id="course-teacher">
                             <Link to={`/teachers/${course.teacher.userId}`} style={{ textDecoration: 'none' }}>
@@ -124,14 +147,14 @@ const CourseDetails = () => {
                         }
 
                         <p className="course-price">Price: {course.price}MKD</p>
-                        {!isTeacher && !isStudentAlreadyEnrolled && !areAllPositionsFilled && !isPendingEnroll && !isEnrollmentSuccessful && (
+                        {isStudent && !isStudentAlreadyEnrolled && !areAllPositionsFilled && !isPendingEnroll && !isEnrollmentSuccessful && (
                             <div className="enroll-button-container">
                                 <button className="enroll-button" onClick={handleEnroll}>
                                     Enroll
                                 </button>
                             </div>
                         )}
-                        {!isTeacher && isStudentAlreadyEnrolled && (
+                        {isStudent && isStudentAlreadyEnrolled && (
                             <div className="enroll-button-container">
                                 <button disabled={true} className="enrolled-button">
                                     Enrolled
@@ -139,7 +162,7 @@ const CourseDetails = () => {
                                 </button>
                             </div>
                         )}
-                        {!isTeacher && areAllPositionsFilled && !isStudentAlreadyEnrolled && (
+                        {isStudent && areAllPositionsFilled && !isStudentAlreadyEnrolled && (
                             <div className="enroll-button-container">
                                 <button
                                     disabled={true}
@@ -150,12 +173,12 @@ const CourseDetails = () => {
                                 <p>This course is currently inactive.</p>
                             </div>
                         )}
-                        {isTeacher &&
+                        {isTeacher && course.courseUploadStatus === 'APPROVED' &&
                             <Link to={`/courseEnrollments/${course.courseId}`}>
                                 <button className="enrolled-students-button">Enrolled students</button>
                             </Link>
                         }
-                        {isTeacher && 
+                        {isTeacher && course.courseUploadStatus === 'APPROVED' &&
                             <Link to={`/courses/${course.courseId}/edit`}>
                                 <button className="edit-button">Edit course</button>
                             </Link>

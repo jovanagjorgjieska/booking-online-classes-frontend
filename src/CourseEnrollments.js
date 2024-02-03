@@ -15,7 +15,7 @@ const CourseEnrollments = () => {
             <h2>{course?.courseName} enrollments</h2>
             {isTeacher && enrollments && enrollments.length && enrollments.map((enrollment) => (
                 <div key={enrollment.id}>
-                    <table className="enrollments-table"> {/* Add a class for styling */}
+                    <table className="enrollments-table">
                         <thead>
                             <tr>
                                 <th>Student</th>

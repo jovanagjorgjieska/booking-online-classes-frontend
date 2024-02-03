@@ -4,11 +4,14 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
     const history = useHistory();
-    const isTeacher = localStorage.getItem('isTeacher');
+    const isStudent = localStorage.getItem('isStudent');
+    const isAdmin = localStorage.getItem('isAdmin');
     const handleLogout = () => {
         localStorage.removeItem('jwtToken');
         localStorage.removeItem('user');
         localStorage.removeItem('isTeacher');
+        localStorage.removeItem('isStudent');
+        localStorage.removeItem('isAdmin');
     
         history.push('/');
       };
@@ -19,8 +22,8 @@ const Navbar = () => {
                 <h1><a href="/home">EduBooking</a></h1>
             </div>
             <div className="right-navbar">
-                {!isTeacher && <a href="/enrollments">My enrollments</a>}
-                <a href="/profile">Profile</a>
+                {isStudent && <a href="/enrollments">My enrollments</a>}
+                {!isAdmin && <a href="/profile">Profile</a>}
                 <a onClick={handleLogout}> <FontAwesomeIcon icon={faSignOutAlt} /></a>
             </div>
         </nav>

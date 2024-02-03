@@ -36,7 +36,7 @@
 }
 .course-preview {
   width: 150px;
-  height: 240px;
+  height: 250px;
   background-color: #f4f4f4;
   padding: 10px 16px;
   margin: 20px 0;
@@ -68,6 +68,31 @@
 .course-type {
   width: auto;
   background-color: khaki;
+  float: right;
+  font-size: small;
+  padding: 3px 5px;
+  font-size: small;
+  font-weight: bold;
+  margin-top: 6px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+.course-status {
+  width: auto;
+  background-color: darkgreen;
+  color: #ddd;
+  float: right;
+  font-size: small;
+  padding: 3px 5px;
+  font-size: small;
+  font-weight: bold;
+  margin-top: 6px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+.course-upload-status {
+  width: auto;
+  color: #ddd;
   float: right;
   font-size: small;
   padding: 3px 5px;
@@ -431,18 +456,29 @@ button {
 }
 
 .edit-button {
-  background-color: #2ecc71;
+  background-color: #15934a;
   color: #fff;
   width: fit-content !important;
   float: right;
+  height: 50px !important;
+  border-radius: 8px;
+}
+
+.edit-button:hover {
+  background-color: darkgreen !important;
 }
 
 .enrolled-students-button {
   margin-left: 5px;
-  background-color: #27ae60 !important;
+  background-color: #534f4f !important;
   color: #fff;
   width: fit-content !important;
   float: right;
+  border-radius: 8px;
+}
+
+.enrolled-students-button:hover {
+  background-color: #333 !important;
 }
 
 .loading-button {
@@ -619,6 +655,104 @@ button {
 .red-text {
   font-weight: bolder;
   color: #f1356d;
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.course-title {
+  margin-right: 10px;
+}
+
+.course-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 150px;
+}
+
+.course-type,
+.course-upload-status,
+.course-status {
+  margin-bottom: 3px;
+}
+
+.approved-class {
+  background-color: green;
+}
+
+.denied-class {
+  background-color: red;
+}
+
+.pending-class {
+  background-color: rgb(60, 59, 58);
+}
+
+.admin-panel { 
+  max-width: '800px';
+  margin: 'auto';
+}
+
+.course-review-admin {
+  width: 100%;
+  height: 90px;
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
+  border-radius: 6px;
+}
+
+.course-review-admin-left {
+  width: 85%;
+  float: left;
+}
+
+.course-review-admin-right {
+  width: 15%;
+  float: right;
+}
+
+.button-approve {
+  background: darkgreen;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 5px;
+  width: 100px;
+}
+
+.button-deny {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100px;
+  margin-top: 10px;
+}
+
+.review-desc-admin{
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.teacher-name {
+  font-size: 15px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.course-name {
+  font-size: 13px;
+  font-weight: bold;
 }
 
 

@@ -12,7 +12,6 @@ import EditCourse from './EditCourse';
 import AddCourse from './AddCourse';
 import MyEnrollments from './MyEnrollments';
 import AddReview from './AddReview';
-import EditReview from './EditReview';
 import CourseReviews from './CourseReviews';
 import CourseEnrollments from './CourseEnrollments';
 
@@ -61,9 +60,6 @@ function App() {
             </Route>
             <Route path="/addReview">
               <AddReview/>
-            </Route>
-            <Route path="/myreviews/:id/edit">
-              <EditReview/>
             </Route>
             <Route path="/reviews/:id">
               <CourseReviews/>

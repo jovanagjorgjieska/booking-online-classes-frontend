@@ -11,12 +11,14 @@ const CourseReviews = () => {
     
     const {data: reviews, isPendingReviews, errorReviews} = useFetch('http://localhost:8080/api/reviews/course/' + id, token);
 
-    if(reviews && reviews.length > 0) {
-        console.log(reviews);
+    let filteredReviews;
+
+    if (reviews) {
+        filteredReviews = reviews.filter(review => review.reviewUploadStatus === "APPROVED");
     }
     return (  
         <div className="course-reviews">
-            {reviews && reviews.length > 0 && <CourseReviewList reviews={reviews} title={course?.courseName}/>}
+            {reviews && reviews.length > 0 && <CourseReviewList reviews={filteredReviews} title={course?.courseName}/>}
             {reviews && reviews.length === 0 && <NoReviewsCourse/>}
         </div>
     );

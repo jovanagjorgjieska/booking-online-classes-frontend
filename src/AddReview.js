@@ -41,7 +41,7 @@ const AddReview = () => {
             .then(() => {
                 console.log("New review added");
                 setIsPending(false);
-                history.push(`/reviews/${courseId}`);
+                history.push(`/courses/${courseId}`);
             })
             .catch(error => {
                 console.error("Error adding review", error);

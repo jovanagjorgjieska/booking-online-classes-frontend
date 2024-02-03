@@ -10,11 +10,11 @@ const AddCourse = () => {
     const [courseName, setCourseName] = useState('');
     const [description, setDescription] = useState('');
     const [details, setDetails] = useState('');
-    const [availablePositions, setAvailablePositions] = useState('');
+    const [totalPositions, setTotalPositions] = useState('');
     const [courseType, setCourseType] = useState('');
     const [courseCategory, setCourseCategory] = useState('');
     const [price, setPrice] = useState('');
-    const [isAvailablePositionsDisabled, setIsAvailablePositionsDisabled] = useState(true);
+    const [isTotalPositionsDisabled, setIsTotalPositionsDisabled] = useState(true);
 
     const [isPendingSave, setIsPendingSave] = useState(false);
 
@@ -30,7 +30,7 @@ const AddCourse = () => {
 
     useEffect(() => {
         if (courseType) {
-            setIsAvailablePositionsDisabled(courseType !== "GROUP");
+            setIsTotalPositionsDisabled(courseType !== "GROUP");
         }
     }, [courseType]);
 
@@ -41,7 +41,7 @@ const AddCourse = () => {
             courseName, 
             description, 
             details,
-            availablePositions, 
+            totalPositions, 
             courseType, 
             courseCategory,
             price };
@@ -123,9 +123,9 @@ const AddCourse = () => {
                 <label>Available positions:</label>
                         <input
                             type="number"
-                            value={availablePositions}
-                            onChange={(e) => setAvailablePositions(e.target.value)}
-                            disabled={isAvailablePositionsDisabled}
+                            value={totalPositions}
+                            onChange={(e) => setTotalPositions(e.target.value)}
+                            disabled={isTotalPositionsDisabled}
                         />
                 <label>Price:</label>
                 <input
