@@ -35,6 +35,7 @@
   padding: 20px;
 }
 .course-preview {
+  position: relative; /* Add this line */
   width: 150px;
   height: 250px;
   background-color: #f4f4f4;
@@ -511,14 +512,17 @@ button {
 }
 
 .course-price-small {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
   padding: 8px;
   width: fit-content;
   border-radius: 10px;
   font-weight: 600;
-  margin-bottom: 10px;
   background-color: #cde7d5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
+
 
 .course-teacher {
   height: 60px;
@@ -699,7 +703,7 @@ button {
 
 .course-review-admin {
   width: 100%;
-  height: 90px;
+  height: 110px;
   padding: 10px;
   border: 1px solid black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -728,6 +732,10 @@ button {
   width: 100px;
 }
 
+.button-approve:hover {
+  background-color: rgb(7, 71, 7);
+}
+
 .button-deny {
   background: #f1356d;
   color: #fff;
@@ -737,6 +745,10 @@ button {
   cursor: pointer;
   width: 100px;
   margin-top: 10px;
+}
+
+.button-deny:hover {
+  background: #b11342;
 }
 
 .review-desc-admin{
@@ -755,6 +767,27 @@ button {
   font-weight: bold;
 }
 
+.no-content-admin {
+  border-radius: 6px;
+  width: 70%;
+  height: 100px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: khaki;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
 
+.welcome {
+  margin-top: 150px;
+}
 
-
+.welcome-message {
+  color: #f1356d;
+  font-weight: bold;
+  font-style: italic;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dbcaca;
+}

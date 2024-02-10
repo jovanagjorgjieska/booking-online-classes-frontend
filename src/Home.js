@@ -49,7 +49,7 @@ const Home = () => {
             {filteredCourses && filteredCourses.length > 0 && isTeacher && <CourseList courses={filteredCourses} title="Your Courses" />}
             {filteredCourses && filteredCourses.length > 0 && profile && isStudent && <CourseList courses={filteredCourses} title="All Courses" />}
             {courses && courses.length === 0 && <NoCourses/>}
-            {!isTeacher && !isStudent && <AdminPanel/>}
+            {!isTeacher && !isStudent && isAdmin && <AdminPanel/>}
         </div>
     );
 }

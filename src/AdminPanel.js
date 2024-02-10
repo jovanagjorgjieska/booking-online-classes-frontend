@@ -1,16 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "./useFetch";
 import StarRatingDisplay from "./StarRatingDisplay";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const AdminPanel = () => {
     const token = localStorage.getItem('jwtToken');
     const [activeTab, setActiveTab] = useState('all');
     const [isPending, setIsPending] = useState(false);
 
+    const [pendingCourses, setPendingCourses] = useState([]);
+    const [pendingReviews, setPendingReviews] = useState([]);
+
     const {data: courses, isPendingCourse, error} = useFetch('http://localhost:8080/api/courses', token);
     const {data: reviews, isPendingReviews, errorReviews} = useFetch('http://localhost:8080/api/reviews', token);
 
+    const history = useHistory();
+
+    useEffect(() => {
+        if (courses) {
+          setPendingCourses(courses.filter(course => course.courseUploadStatus === "PENDING"));
+        }
+      }, [courses]);
+      
+    useEffect(() => {
+        if (reviews) {
+          setPendingReviews(reviews.filter(review => review.reviewUploadStatus === "PENDING"));
+        }
+    }, [reviews]);
 
     let filteredCourses;
     let filteredReviews;
@@ -39,20 +56,18 @@ const AdminPanel = () => {
                 'Authorization': `Bearer ${token}`
             },
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Approving course failed');
-            }
-            return response.json();
-        })
-        .then(() => {
-            setIsPending(false);
-            window.location.reload();
-        })
-        .catch(error => {
-            console.error('Error approving course:', error);
-            setIsPending(false);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Approving course failed');
+                }
+                setPendingCourses(prevCourses => prevCourses.filter(course => course.courseId !== courseId));
+                setIsPending(false);
+                history.push(`/home`);
+            })
+            .catch(error => {
+                console.error('Error approving course:', error);
+                setIsPending(false);
+            });
     };
     
     const handleDenyCourse = (courseId) => {
@@ -65,20 +80,18 @@ const AdminPanel = () => {
                 'Authorization': `Bearer ${token}`
             },
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Denying course failed');
-            }
-            return response.json();
-        })
-        .then(() => {
-            setIsPending(false);
-            window.location.reload();
-        })
-        .catch(() => {
-            console.error('Error denying course:', error);
-            setIsPending(false);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Denying course failed');
+                }
+                setPendingCourses(prevCourses => prevCourses.filter(course => course.courseId !== courseId));
+                setIsPending(false);
+                history.push(`/home`);
+            })
+            .catch(() => {
+                console.error('Error denying course:', error);
+                setIsPending(false);
+            });
     };
     
     const handleApproveReview = (reviewId) => {
@@ -93,13 +106,11 @@ const AdminPanel = () => {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Approving review failed');
+                throw new Error('Approving reviews failed');
             }
-            return response.json();
-        })
-        .then(data => {
+            setPendingReviews(prevReviews => prevReviews.filter(review => review.reviewId !== reviewId));
             setIsPending(false);
-            window.location.reload();
+            history.push(`/home`);
         })
         .catch(error => {
             console.error('Error approving review:', error);
@@ -119,13 +130,11 @@ const AdminPanel = () => {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Denying review failed');
+                throw new Error('Deniyng reviews failed');
             }
-            return response.json();
-        })
-        .then(data => {
+            setPendingReviews(prevReviews => prevReviews.filter(review => review.reviewId !== reviewId));
             setIsPending(false);
-            window.location.reload();
+            history.push(`/home`);
         })
         .catch(error => {
             console.error('Error denying review:', error);
@@ -156,7 +165,7 @@ const AdminPanel = () => {
                 </button>
             </div>
             {activeTab === 'all' && <div style={{ marginTop: '20px' }}>
-                {filteredCourses && filteredCourses.map((course) => (
+                {pendingCourses && pendingCourses.map((course) => (
                     <Link to={`/courses/${course.courseId}`}>
                         <div className="course-review-admin" key={course.id}>
                             <div className="course-review-admin-left">
@@ -171,7 +180,7 @@ const AdminPanel = () => {
                         </div>
                     </Link>
                 ))}
-                {filteredReviews && filteredReviews.map((review) => (
+                {pendingReviews && pendingReviews.map((review) => (
                     <div className="course-review-admin" key={review.id}>
                         <div className="course-review-admin-left">
                             <h3>{review.author}:</h3>
@@ -185,9 +194,12 @@ const AdminPanel = () => {
                         </div>
                     </div>
                 ))}
+                {pendingCourses.length === 0 && pendingReviews.length === 0 && <div className="no-content-admin">
+                    Currently there are no courses or reviews pending for approval.
+                </div>}
             </div>}
             {activeTab === 'courses' && <div style={{ marginTop: '20px' }}>
-                {filteredCourses && filteredCourses.map((course) => (
+                {pendingCourses && pendingCourses.map((course) => (
                     <Link to={`/courses/${course.courseId}`}>
                         <div className="course-review-admin" key={course.id}>
                             <div className="course-review-admin-left">
@@ -202,9 +214,12 @@ const AdminPanel = () => {
                         </div>
                     </Link>
                 ))}
+                {pendingCourses.length === 0 && <div className="no-content-admin">
+                    Currently there are no courses pending for approval.
+                </div>}
             </div>}
             {activeTab === 'reviews' && <div style={{ marginTop: '20px' }}>
-                {filteredReviews && filteredReviews.map((review) => (
+                {pendingReviews && pendingReviews.map((review) => (
                     <div className="course-review-admin" key={review.id}>
                         <div className="course-review-admin-left">
                             <h3>{review.author}:</h3>
@@ -218,6 +233,9 @@ const AdminPanel = () => {
                         </div>
                     </div>
                 ))}
+                {pendingReviews.length === 0 && <div className="no-content-admin">
+                    Currently there are no reviews pending for approval.
+                </div>}
             </div>}
         </div>
   );
